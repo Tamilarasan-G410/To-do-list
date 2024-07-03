@@ -1,0 +1,206 @@
+html{
+    height: 100%;
+    width: 100%;
+    
+}
+body {
+    background-color: #CDE8E5;
+    padding: 0%;
+    margin: 0%;
+    height: 100%;
+    width: 100%;
+}
+.whole{
+    width:100%;
+    height:100%;
+    margin: 0%;
+    padding:0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ 
+}
+/* .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:0%;
+    height: 5%;
+    /* width:50%;
+    background-image: url("../Images/Capture.PNG");
+    background-size: cover; */
+
+
+.container {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0%;
+}
+.container form{
+    height:60%;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-bottom: 20%; */
+    
+
+}
+.container input{
+    height:17%;
+    width:30%;
+    font-size: 16px;
+    border: none;
+    padding-left: 1%;
+    background-color: #EEF7FF;
+}
+.container input:focus{
+    background-color: #ffffff;
+    outline:1px solid #14213d;
+}
+.button{
+    border:none;
+    background-color: #4D869C;
+    color: whitesmoke;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+    height:19%;
+    width:10%;
+    /* border-radius: 14%; */
+}    
+
+.button:hover{
+    background-color: #14213d;
+    color: whitesmoke;
+}
+.tasks{
+    height:50%;
+    width: 70%;
+    background-color: white;
+    /* display:flex;
+    justify-content: center; */
+    /* align-items: center; */
+}
+.title{
+    width:100%;
+    background-color: #4D869C;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom:1%;
+    margin-top: 0%;
+    color: aliceblue;
+}
+.rdbtn{
+    /* margin-top:5%; */
+    /* margin-left: 10%; */
+    display:flex;
+    justify-content: center;
+    accent-color: #4D869C;
+}
+.rdbtn label{
+    font-size: 25px;
+    margin: 0%;
+    /* padding-left: 1%; */
+    padding-right: 1%;
+}
+.showtasks{
+    margin-top: 2%;
+    height:70%;
+    overflow: auto;
+}
+.showtasks1{
+    padding:0%;
+    margin-top:1%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.taskname{
+    width:60%;
+    padding:0.5%;
+    padding-left: 2%;
+    margin-left: 1%;
+    background-color: #EEF7FF;
+}
+.buttons{
+    width:40%;
+    display: flex;
+    justify-content: center;
+    
+}
+.button1{
+    border:none;
+    background-color: #4D869C;
+    color: whitesmoke;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+    height:50%;
+    width:28%;
+    padding: 0.8%;
+    margin-left: 1.3%;
+    border-radius: 20px; 
+    font-size: 14px;
+}    
+
+.button1:hover{
+    background-color: #14213d;
+    color: whitesmoke;
+}
+
+@media screen and (max-width:425px){
+    .rdbtn label{
+        font-size: 15px;
+    }
+    .container input{
+        width:50%;
+    }
+    .button{
+        width:23%;
+    }
+    .buttons{
+        width:50%;
+        padding-left: 2%;
+    }
+    .button1{
+        font-size:13px;
+        width:39%;
+        margin: 1%;
+        padding: 2%;
+    }
+    .taskname{
+        width:28%;
+        text-overflow:ellipsis;
+        overflow: hidden;
+    }
+    .tasks{
+        width:90%;
+    }
+}
+@media screen and (min-width:426px) and (max-width:768px){
+    .rdbtn label{
+        font-size: 17px;
+    }
+    .button{
+        width:20%;
+    }
+    .buttons{
+        width:60%;
+        padding-left: 2%;
+    }
+    .taskname{
+        width:24%;
+        text-overflow:ellipsis;
+        overflow: hidden;
+    }
+}
