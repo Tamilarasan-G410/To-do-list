@@ -20,17 +20,6 @@ body {
     align-items: center;
  
 }
-/* .title{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin:0%;
-    height: 5%;
-    /* width:50%;
-    background-image: url("../Images/Capture.PNG");
-    background-size: cover; */
-
-
 .container {
     height: 30%;
     width: 100%;
@@ -45,9 +34,6 @@ body {
     display:flex;
     justify-content: center;
     align-items: center;
-    /* padding-bottom: 20%; */
-    
-
 }
 .container input{
     height:17%;
@@ -68,11 +54,9 @@ body {
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    /* margin: 4px 2px; */
     cursor: pointer;
     height:19%;
     width:10%;
-    /* border-radius: 14%; */
 }    
 
 .button:hover{
@@ -83,9 +67,6 @@ body {
     height:50%;
     width: 70%;
     background-color: white;
-    /* display:flex;
-    justify-content: center; */
-    /* align-items: center; */
 }
 .title{
     width:100%;
@@ -99,8 +80,6 @@ body {
     color: aliceblue;
 }
 .rdbtn{
-    /* margin-top:5%; */
-    /* margin-left: 10%; */
     display:flex;
     justify-content: center;
     accent-color: #4D869C;
@@ -108,7 +87,6 @@ body {
 .rdbtn label{
     font-size: 25px;
     margin: 0%;
-    /* padding-left: 1%; */
     padding-right: 1%;
 }
 .showtasks{
@@ -143,7 +121,6 @@ body {
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    /* margin: 4px 2px; */
     cursor: pointer;
     height:50%;
     width:28%;
