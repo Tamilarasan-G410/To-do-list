@@ -122,6 +122,7 @@ body {
     border-radius: 30px;
     font-size: 20px;
     background-color:white;
+    white-space: nowrap;
 }
 .buttons{
     width:15%;
