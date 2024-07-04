@@ -94,7 +94,7 @@ body {
     accent-color: #403E63;
 }
 .rdbtn label{
-    font-size: 25px;
+    font-size: 23px;
     margin: 0%;
     padding-right: 1%;
 
@@ -156,7 +156,7 @@ body {
 
 @media screen and (max-width:425px){
     .rdbtn label{
-        font-size: 21px;
+        font-size: 18px;
     }
     .container input{
         width:50%;
