@@ -4,7 +4,11 @@ html{
     
 }
 body {
-    background-image: linear-gradient(100deg, #d4f1ff, #ffffff);
+    /* background-image: linear-gradient(100deg, #d4f1ff, #ffffff); */
+    background-image: url("../images/20282258_6206160.jpg");
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat; 
     color: #1a150e;
     padding: 0%;
     margin: 0%;
@@ -20,6 +24,9 @@ body {
     flex-direction: column;
     align-items: center;
  
+}
+.title{
+    color: aliceblue;
 }
 .container {
     height: 17%;
@@ -42,19 +49,19 @@ body {
     font-size: 16px;
     border: none;
     padding-left: 1%;
-    background-color: #AEB1B4;
+    background-color: #f0f4f8;
     color: #1a150e;
     border-top-left-radius: 17px;
     border-bottom-left-radius: 17px;
 }
 
 .container input:focus{
-    background-color: #919699;
+    background-color: white;
 }
 .button{
     border:none;
-    background-color: white;
-    color: #1a150e;
+    background-color: #413F64;
+    color: white;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -68,24 +75,28 @@ body {
 }    
 
 .button:hover{
-    background-color: #f0f0f0;
+    background-color:#363553;
 }
 .tasks{
     height:50%;
     width: 70%;
     background:transparent;
-    border:2px solid black;
-    border-radius: 17px;
+    border:2px solid rgba(255, 255, 255, .5);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, .5) ;
 }
 .rdbtn{
     display:flex;
     justify-content: center;
     padding-top:1%;
+    accent-color: #403E63;
 }
 .rdbtn label{
     font-size: 25px;
     margin: 0%;
     padding-right: 1%;
+
 }
 .showtasks{
     margin-top: 2%;
@@ -109,7 +120,7 @@ body {
     margin-left: 1%;
     border-radius: 30px;
     font-size: 20px;
-    background-color:#AEB1B4;
+    background-color:white;
 }
 .buttons{
     width:15%;
@@ -117,7 +128,7 @@ body {
 }
 .button1{
     border:none;
-    background-color: gray;
+    background-color: #413F64;
     cursor: pointer;
     /* height:50%;
     width:15%;
@@ -139,7 +150,7 @@ body {
 }
 
 .button1:hover{
-    background-color:rgb(105, 105, 105);
+    background-color:#363553;
 }
 
 @media screen and (max-width:425px){
