@@ -79,6 +79,7 @@ body {
     background-color:#363553;
 }
 .tasks{
+    padding: 2%;
     height:50%;
     width: 70%;
     background:transparent;
