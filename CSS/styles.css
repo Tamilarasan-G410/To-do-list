@@ -4,7 +4,8 @@ html{
     
 }
 body {
-    background-color: #CDE8E5;
+    background-image: linear-gradient(100deg, #d4f1ff, #ffffff);
+    color: #1a150e;
     padding: 0%;
     margin: 0%;
     height: 100%;
@@ -21,7 +22,7 @@ body {
  
 }
 .container {
-    height: 30%;
+    height: 17%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -29,60 +30,57 @@ body {
     margin: 0%;
 }
 .container form{
-    height:60%;
+    height:100%;
     width:100%;
     display:flex;
     justify-content: center;
     align-items: center;
 }
 .container input{
-    height:17%;
+    height:23%;
     width:30%;
     font-size: 16px;
     border: none;
     padding-left: 1%;
-    background-color: #EEF7FF;
+    background-color: #AEB1B4;
+    color: #1a150e;
+    border-top-left-radius: 17px;
+    border-bottom-left-radius: 17px;
 }
+
 .container input:focus{
-    background-color: #ffffff;
-    outline:1px solid #14213d;
+    background-color: #919699;
 }
 .button{
     border:none;
-    background-color: #4D869C;
-    color: whitesmoke;
+    background-color: white;
+    color: #1a150e;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
-    height:19%;
-    width:10%;
+    height:24%;
+    width:4%;
+    padding: 10px;
+    font-size: 17px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }    
 
 .button:hover{
-    background-color: #14213d;
-    color: whitesmoke;
+    background-color: #f0f0f0;
 }
 .tasks{
     height:50%;
     width: 70%;
-    background-color: white;
-}
-.title{
-    width:100%;
-    background-color: #4D869C;
-    text-align: center;
-    display:flex;
-    justify-content: center;
-    font-size: 25px;
-    margin-bottom:1%;
-    margin-top: 0%;
-    color: aliceblue;
+    background:transparent;
+    border:2px solid black;
+    border-radius: 17px;
 }
 .rdbtn{
     display:flex;
     justify-content: center;
-    accent-color: #4D869C;
+    padding-top:1%;
 }
 .rdbtn label{
     font-size: 25px;
@@ -91,10 +89,11 @@ body {
 }
 .showtasks{
     margin-top: 2%;
-    height:70%;
+    height:85%;
     overflow: auto;
 }
 .showtasks1{
+    height:19%;
     padding:0%;
     margin-top:1%;
     display:flex;
@@ -102,42 +101,50 @@ body {
     align-items: center;
 }
 .taskname{
-    width:60%;
+    height:35%;
+    width:85%;
     padding:0.5%;
+    padding-top: 1%;
     padding-left: 2%;
     margin-left: 1%;
-    background-color: #EEF7FF;
+    border-radius: 30px;
+    font-size: 20px;
+    background-color:#AEB1B4;
 }
 .buttons{
-    width:40%;
+    width:15%;
     display: flex;
-    justify-content: center;
-    
 }
 .button1{
     border:none;
-    background-color: #4D869C;
-    color: whitesmoke;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+    background-color: gray;
     cursor: pointer;
-    height:50%;
-    width:28%;
+    /* height:50%;
+    width:15%;
     padding: 0.8%;
     margin-left: 1.3%;
-    border-radius: 20px; 
-    font-size: 14px;
-}    
+    border-radius: 50%; */
+    font-size: 19px;
+    cursor: pointer;
+    width: 50%;
+    height: 2em;
+    border-radius: 80%;
+    margin: 0 5px;
+    
+}
+.checkbtn, .deletebtn , .editbtn {
+   width:50%;
+   height: 100%;
+   object-fit: contain;
+}
 
 .button1:hover{
-    background-color: #14213d;
-    color: whitesmoke;
+    background-color:rgb(105, 105, 105);
 }
 
 @media screen and (max-width:425px){
     .rdbtn label{
-        font-size: 15px;
+        font-size: 21px;
     }
     .container input{
         width:50%;
@@ -151,33 +158,68 @@ body {
     }
     .button1{
         font-size:13px;
-        width:39%;
+        width:30%;
         margin: 1%;
         padding: 2%;
     }
     .taskname{
-        width:28%;
+        width:80%;
         text-overflow:ellipsis;
         overflow: hidden;
     }
     .tasks{
         width:90%;
     }
+    .checkbtn, .deletebtn , .editbtn {
+        width:50%;
+        object-fit: contain;
+}
 }
 @media screen and (min-width:426px) and (max-width:768px){
     .rdbtn label{
-        font-size: 17px;
+        font-size: 21px;
     }
     .button{
         width:20%;
     }
     .buttons{
-        width:60%;
+        width:40%;
         padding-left: 2%;
     }
+    .button1{
+        width:30%;
+    }
     .taskname{
-        width:24%;
+        width:60%;
         text-overflow:ellipsis;
         overflow: hidden;
     }
+    .checkbtn, .deletebtn , .editbtn {
+        width:51%;
+        object-fit: contain;
+}
+}
+@media screen and (min-width:769px) and (max-width:1123px){
+    .rdbtn label{
+        font-size: 21px;
+    }
+    .button{
+        width:20%;
+    }
+    .buttons{
+        width:40%;
+        padding-left: 2%;
+    }
+    .button1{
+        width:23%;
+    }
+    .taskname{
+        width:65%;
+        text-overflow:ellipsis;
+        overflow: hidden;
+    }
+    .checkbtn, .deletebtn , .editbtn {
+        width:40%;
+        object-fit: contain;
+}
 }
