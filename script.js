@@ -33,9 +33,7 @@ function createTaskButtons(taskElement) {
     const buttons = document.createElement("div");
     buttons.classList.add("buttons");
     taskElement.append(buttons);
-
     buttons.append(createButton("editbtn", "../images/edit.png", "editbtni"));
-    // buttons.append(createButton("checkbtn", "../images/checked.png", "checkbtni"));
     const checkButton = createButton("checkbtn", "../images/checked.png", "checkbtni");
     checkButton.addEventListener("click", function(){completeTask();});
     buttons.append(checkButton);
