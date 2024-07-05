@@ -35,10 +35,12 @@ function createTaskButtons(taskElement) {
     taskElement.append(buttons);
 
     buttons.append(createButton("editbtn", "../images/edit.png", "editbtni"));
-    buttons.append(createButton("checkbtn", "../images/checked.png", "checkbtni"));
+    // buttons.append(createButton("checkbtn", "../images/checked.png", "checkbtni"));
+    const checkButton = createButton("checkbtn", "../images/checked.png", "checkbtni");
+    checkButton.addEventListener("click", function(){completeTask();});
+    buttons.append(checkButton);
     buttons.append(createButton("deletebtn", "../images/delete.png", "deletebtni"));
 }
-
 function addTask() {
     if (inputBox.value === "") {
         alert("Enter a value");
@@ -49,12 +51,8 @@ function addTask() {
         inputBox.value = "";
     }
 }
-
-const completeButton=document.querySelector(".checkbtn");
-completeButton.addEventListener("click",completeTask);
-
-
-function completeTask(){
-    const tasknamee=document.querySelector(".taskname");
-    tasknamee.style = 'text-decoration:line-through;';
+function completeTask() {
+    const taskname = document.querySelector(".taskname");
+    taskname.style.textDecoration = "line-through";
 }
+
