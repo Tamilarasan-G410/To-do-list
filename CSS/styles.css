@@ -123,12 +123,14 @@ body {
     font-size: 20px;
     background-color:aliceblue;
     white-space: nowrap;
+    text-overflow:ellipsis;
+    overflow: hidden;
 }
 .buttons{
     width:15%;
     display: flex;
 }
-.button1{
+.checkbtn, .deletebtn , .editbtn {
     border:none;
     background-color: #413F64;
     cursor: pointer;
@@ -139,13 +141,19 @@ body {
     margin: 0 5px;
     
 }
-.checkbtn, .deletebtn , .editbtn {
+.checkbtni, .deletebtni , .editbtni {
    width:50%;
    height: 100%;
    object-fit: contain;
 }
 
-.button1:hover{
+ .editbtn:hover{
+    background-color:#363553;
+}
+.checkbtn:hover{
+    background-color:#363553;
+}
+.deletebtn:hover{
     background-color:#363553;
 }
 
@@ -178,7 +186,7 @@ body {
     .tasks{
         width:90%;
     }
-    .checkbtn, .deletebtn , .editbtn {
+    .checkbtni, .deletebtn i, .editbtni {
         width:50%;
         object-fit: contain;
 }
@@ -202,7 +210,7 @@ body {
         text-overflow:ellipsis;
         overflow: hidden;
     }
-    .checkbtn, .deletebtn , .editbtn {
+    .checkbtni, .deletebtni , .editbtni {
         width:51%;
         object-fit: contain;
 }
@@ -226,7 +234,7 @@ body {
         text-overflow:ellipsis;
         overflow: hidden;
     }
-    .checkbtn, .deletebtn , .editbtn {
+    .checkbtni, .deletebtni , .editbtni {
         width:40%;
         object-fit: contain;
 }
