@@ -209,3 +209,29 @@ function checkForEmptyStates(filter,  hasFilteredTasks = false) {
 
 
 
+// function editTask(showtasks1) {
+//     const taskname = showtasks1.querySelector(".taskname");
+
+//     if (taskname.isContentEditable) {
+//         // Add event listener for "Enter" key
+//         taskname.addEventListener("keydown", function(event) {
+//             if (event.key === "Enter") {
+//                 event.preventDefault(); // Prevent new line
+//                 taskname.contentEditable = "false";
+//                 taskname.blur();
+//                 // Remove event listener after use to avoid multiple handlers
+//                 taskname.removeEventListener("keydown", arguments.callee);
+//             }
+//         });
+        
+//         // When clicking outside the taskname element, finish editing
+//         taskname.addEventListener("blur", function() {
+//             taskname.contentEditable = "false";
+//         });
+
+//         taskname.focus();
+//     } else {
+//         taskname.contentEditable = "true";
+//         taskname.focus(); 
+//     }
+// }
