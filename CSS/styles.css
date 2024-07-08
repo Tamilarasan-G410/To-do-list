@@ -67,7 +67,7 @@ body {
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
-    height:25%;
+    height:24%;
     width:4%;
     padding: 10px;
     font-size: 17px;
@@ -126,6 +126,7 @@ body {
     white-space: nowrap;
     text-overflow:ellipsis;
     overflow: hidden;
+    
 }
 .buttons{
     width:15%;
@@ -157,6 +158,36 @@ body {
 .deletebtn:hover{
     background-color:#363553;
 }
+.finalbutton{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width:90%;
+    padding-top: 1%;
+}
+.delete-all{
+    border:none;
+    background-color: whitesmoke;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 23px;
+    padding: 10px;
+}
+.delete-all:hover{
+    background-color:#a7c7af;
+}
+.message-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-style: italic;
+    color: black;
+}
+
 
 @media screen and (max-width:425px){
     .rdbtn label{

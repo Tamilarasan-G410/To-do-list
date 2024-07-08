@@ -13,21 +13,26 @@
             <h1 class="title">To-do-list!</h1>
         </div>    
         <div class="container">
-            <form>
+            <form id="form">
             <input type="text" id="inputtask" placeholder="Add task" autocomplete="off">
-            <button class="button" type="button">Add</button>
+            <button class="button" type="submit">Add</button>
             </form>
         </div>
         <div class="tasks">
             <div class="rdbtn">
-                <input type="radio" name="Status" value="All">
+                <input type="radio" name="taskFilter" id="all" value="All" checked>
                 <label for="All"><b>All</b></label>
-                <input type="radio" name="Status" value="Assigned">
+                <input type="radio" name="taskFilter" id="assigned" value="Assigned">
                 <label for="Assigned"><b>Assigned</b></label>
-                <input type="radio" name="Status" value="Completed">
-                <label for="html"><b>Completed</b></label>
+                <input type="radio" name="taskFilter" id="completed" value="Completed">
+                <label for="Completed"><b>Completed</b></label>
             </div>
             <div class="showtasks">
+                <div class="message-container">
+                    <p class="no-tasks-message" style="display: none;">No tasks available.</p>
+                    <p class="no-completed-tasks-message" style="display: none;">No completed tasks.</p>
+                    <p class="no-assigned-tasks-message" style="display: none;">No assigned tasks.</p>
+                  </div>
                 <!-- <div class="showtasks1">
                     <p class="taskname">To create a to-do-list</p>
                     <div class="buttons">
@@ -61,6 +66,9 @@
                     </div>
                 </div> -->
             </div>
+        </div>
+        <div class="finalbutton">
+            <button class="delete-all">Delete All Tasks</button>
         </div>
     </div>
     <script src="script.js"></script>
