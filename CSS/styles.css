@@ -7,7 +7,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: #1a150e;
+  color: #413f64;
   padding: 0%;
   margin: 0%;
   height: 100%;
@@ -49,9 +49,9 @@ body {
   border: none;
   padding-left: 1%;
   background-color: #f0f4f8;
-  color: #1a150e;
   border-top-left-radius: 17px;
   border-bottom-left-radius: 17px;
+  color: #413f64;
 }
 
 .container input:focus {
