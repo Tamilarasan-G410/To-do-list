@@ -1,285 +1,288 @@
-html{
-    height: 100%;
-    width: 100%;
-    
+html {
+  height: 100%;
+  width: 100%;
 }
 body {
-    background-image: url("../images/20282258_6206160.jpg");
-    background-size:cover;
-    background-position: center;
-    background-repeat: no-repeat; 
-    color: #1a150e;
-    padding: 0%;
-    margin: 0%;
-    height: 100%;
-    width: 100%;
-    font-family: sans-serif;
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #1a150e;
+  padding: 0%;
+  margin: 0%;
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
 }
-.whole{
-    width:100%;
-    height:100%;
-    margin: 0%;
-    padding:0%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
- 
+.whole {
+  width: 100%;
+  height: 100%;
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.title{
-    color: aliceblue;
+.title {
+  color: #413f64;
 }
 .container {
-    height: 17%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0%;
+  height: 17%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0%;
 }
-.container form{
-    height:50%;
-    width:100%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.container form {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.container input{
-    height:49%;
-    width:30%;
-    font-size: 16px;
-    border: none;
-    padding-left: 1%;
-    background-color: #f0f4f8;
-    color: #1a150e;
-    border-top-left-radius: 17px;
-    border-bottom-left-radius: 17px;
-    
+.container input {
+  height: 49%;
+  width: 30%;
+  font-size: 16px;
+  border: none;
+  padding-left: 1%;
+  background-color: #f0f4f8;
+  color: #1a150e;
+  border-top-left-radius: 17px;
+  border-bottom-left-radius: 17px;
 }
 
-.container input:focus{
-    background-color: white;
+.container input:focus {
+  background-color: white;
 }
-.button{
-    border:none;
-    background-color: #C9F0D3;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    height:52%;
-    width:4%;
-    padding: 10px;
-    font-size: 17px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-}    
+.button {
+  border: none;
+  background-color: #413f64;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  height: 52%;
+  width: 4%;
+  padding: 10px;
+  font-size: 17px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
 
-.button:hover{
-    background-color:#a7c7af;
+.button:hover {
+  background-color: #2f2b61;
 }
-.error-message{
-    margin:0%;
-    padding-bottom: 1%;
-    width:100%;
-    height:30%;
-    text-align: center;
-    margin-right: 20%;
-    color: red;
-    font-weight: bold;
-    font-size: 19px;
+.error-message {
+  margin: 0%;
+  padding-bottom: 1%;
+  width: 100%;
+  height: 30%;
+  text-align: center;
+  margin-right: 20%;
+  color: red;
+  font-weight: bold;
+  font-size: 19px;
 }
-.tasks{
-    padding: 2%;
-    height:50%;
-    width: 70%;
-    background:transparent;
-    border:2px solid rgba(255, 255, 255, .5);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255, 255, 255, .5);
+.tasks {
+  padding: 2%;
+  height: 50%;
+  width: 70%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
-.rdbtn{
-    display:flex;
-    justify-content: center;
-    padding-top:1%;
-    accent-color: #403E63;
+.rdbtn {
+  display: flex;
+  justify-content: center;
+  padding-top: 1%;
+  accent-color: #413f64;
 }
-.rdbtn label{
-    font-size: 23px;
-    margin: 0%;
-    padding-right: 1%;
+.rdbtn label {
+  font-size: 23px;
+  margin: 0%;
+  padding-right: 1%;
+}
+.showtasks {
+  margin-top: 2%;
+  height: 85%;
+  overflow: auto;
+}
+.showtasks1 {
+  height: 19%;
+  padding: 0%;
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.taskname {
+  height: 35%;
+  width: 85%;
+  padding: 0.5%;
+  padding-top: 1%;
+  padding-left: 2%;
+  margin-left: 1%;
+  border-radius: 30px;
+  font-size: 20px;
+  background-color: aliceblue;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.buttons {
+  width: 15%;
+  display: flex;
+}
+.checkbtn,
+.deletebtn,
+.editbtn {
+  border: none;
+  background-color: #413f64;
+  cursor: pointer;
+  font-size: 19px;
+  cursor: pointer;
+  width: 50%;
+  border-radius: 23px;
+  margin: 0 5px;
+}
+.checkbtni,
+.deletebtni,
+.editbtni {
+  width: 50%;
+  height: 100%;
+  object-fit: contain;
+}
 
+.editbtn:hover {
+  background-color: #2f2b61;
 }
-.showtasks{
-    margin-top: 2%;
-    height:85%;
-    overflow: auto;
+.checkbtn:hover {
+  background-color: #2f2b61;
 }
-.showtasks1{
-    height:19%;
-    padding:0%;
-    margin-top:1%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.deletebtn:hover {
+  background-color: #2f2b61;
 }
-.taskname{
-    height:35%;
-    width:85%;
-    padding:0.5%;
-    padding-top: 1%;
-    padding-left: 2%;
-    margin-left: 1%;
-    border-radius: 30px;
-    font-size: 20px;
-    background-color:aliceblue;
-    white-space: nowrap;
-    text-overflow:ellipsis;
-    overflow: hidden;
-    
+.finalbutton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 90%;
+  padding-top: 1%;
 }
-.buttons{
-    width:15%;
-    display: flex;
+.delete-all {
+  border: none;
+  background-color: #413f64;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 23px;
+  padding: 10px;
 }
-.checkbtn, .deletebtn , .editbtn {
-    border:none;
-    background-color: #413F64;
-    cursor: pointer;
-    font-size: 19px;
-    cursor: pointer;
+.delete-all:hover {
+  background-color: #2f2b61;
+}
+.message-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-style: italic;
+  color: black;
+}
+
+@media screen and (max-width: 425px) {
+  .rdbtn label {
+    font-size: 18px;
+  }
+  .container input {
     width: 50%;
-    border-radius: 23px;
-    margin: 0 5px;
-    
+    padding-left: 5%;
+  }
+  .button {
+    width: 23%;
+  }
+  .buttons {
+    width: 50%;
+    padding-left: 2%;
+  }
+  .button1 {
+    font-size: 13px;
+    width: 30%;
+    margin: 1%;
+    padding: 2%;
+  }
+  .taskname {
+    width: 80%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .tasks {
+    width: 90%;
+  }
+  .checkbtni,
+  .deletebtn i,
+  .editbtni {
+    width: 50%;
+    object-fit: contain;
+  }
 }
-.checkbtni, .deletebtni , .editbtni {
-   width:50%;
-   height: 100%;
-   object-fit: contain;
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .rdbtn label {
+    font-size: 21px;
+  }
+  .button {
+    width: 12%;
+  }
+  .buttons {
+    width: 40%;
+    padding-left: 2%;
+  }
+  .button1 {
+    width: 30%;
+  }
+  .taskname {
+    width: 60%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .checkbtni,
+  .deletebtni,
+  .editbtni {
+    width: 51%;
+    object-fit: contain;
+  }
 }
-
- .editbtn:hover{
-    background-color:#363553;
-}
-.checkbtn:hover{
-    background-color:#363553;
-}
-.deletebtn:hover{
-    background-color:#363553;
-}
-.finalbutton{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width:90%;
-    padding-top: 1%;
-}
-.delete-all{
-    border:none;
-    background-color: whitesmoke;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 23px;
-    padding: 10px;
-}
-.delete-all:hover{
-    background-color:#a7c7af;
-}
-.message-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    font-style: italic;
-    color: black;
-}
-
-
-@media screen and (max-width:425px){
-    .rdbtn label{
-        font-size: 18px;
-    }
-    .container input{
-        width:50%;
-        padding-left: 5%;
-    }
-    .button{
-        width:23%;
-    }
-    .buttons{
-        width:50%;
-        padding-left: 2%;
-    }
-    .button1{
-        font-size:13px;
-        width:30%;
-        margin: 1%;
-        padding: 2%;
-    }
-    .taskname{
-        width:80%;
-        text-overflow:ellipsis;
-        overflow: hidden;
-    }
-    .tasks{
-        width:90%;
-    }
-    .checkbtni, .deletebtn i, .editbtni {
-        width:50%;
-        object-fit: contain;
-}
-}
-@media screen and (min-width:426px) and (max-width:768px){
-    .rdbtn label{
-        font-size: 21px;
-    }
-    .button{
-        width:12%;
-    }
-    .buttons{
-        width:40%;
-        padding-left: 2%;
-    }
-    .button1{
-        width:30%;
-    }
-    .taskname{
-        width:60%;
-        text-overflow:ellipsis;
-        overflow: hidden;
-    }
-    .checkbtni, .deletebtni , .editbtni {
-        width:51%;
-        object-fit: contain;
-}
-}
-@media screen and (min-width:769px) and (max-width:1123px){
-    .rdbtn label{
-        font-size: 21px;
-    }
-    .button{
-        width:7%;
-    }
-    .buttons{
-        width:40%;
-        padding-left: 2%;
-    }
-    .button1{
-        width:23%;
-    }
-    .taskname{
-        width:65%;
-        text-overflow:ellipsis;
-        overflow: hidden;
-    }
-    .checkbtni, .deletebtni , .editbtni {
-        width:40%;
-        object-fit: contain;
-}
+@media screen and (min-width: 769px) and (max-width: 1123px) {
+  .rdbtn label {
+    font-size: 21px;
+  }
+  .button {
+    width: 7%;
+  }
+  .buttons {
+    width: 40%;
+    padding-left: 2%;
+  }
+  .button1 {
+    width: 23%;
+  }
+  .taskname {
+    width: 65%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .checkbtni,
+  .deletebtni,
+  .editbtni {
+    width: 40%;
+    object-fit: contain;
+  }
 }

@@ -1,13 +1,13 @@
 const inputBox = document.querySelector("#inputtask");
 const inputButton = document.querySelector(".button");
 const showtasks = document.querySelector(".showtasks");
-const errormessage = document.querySelector(".error-message")
+const errormessage = document.querySelector(".error-message");
 const noTasksMessage = document.querySelector(".no-tasks-message");
 const noCompletedTasksMessage = document.querySelector(".no-completed-tasks-message");
 const noAssignedTasksMessage = document.querySelector(".no-assigned-tasks-message");
 const deleteAllButton = document.querySelector(".delete-all");
 deleteAllButton.addEventListener("click", deleteAllTasks);
-const form =document.querySelector("#form");
+const form = document.querySelector("#form");
 form.addEventListener("submit", addTask);
 let currentFilter = "all";
 checkForEmptyStates(currentFilter);
@@ -15,19 +15,25 @@ inputBox.addEventListener("click", () => {
     errormessage.innerHTML = "";
 });
 
+document.addEventListener("DOMContentLoaded", loadTasksFromLocalStorage);
 
-function createshowtasks1() {
+function createshowtasks1(taskName, taskStatus) {
     const showtasks1 = document.createElement("div");
     showtasks1.classList.add("showtasks1");
     showtasks.append(showtasks1);
-    showtasks1.state=0;
+    showtasks1.state = taskStatus === "completed" ? 1 : 0;
+    showtasks1.setAttribute("data-status", taskStatus);
     return showtasks1;
 }
 
-function createTaskName(showtasks1) {
+function createTaskName(showtasks1, taskName) {
     const taskname = document.createElement("p");
     taskname.classList.add("taskname");
-    taskname.innerHTML = inputBox.value;
+    taskname.innerHTML = taskName;
+    if (showtasks1.state === 1) {
+        taskname.style.textDecoration = "line-through";
+        taskname.style.backgroundColor = "#D0D0D0";
+    }
     showtasks1.append(taskname);
 }
 
@@ -70,11 +76,11 @@ function addTask(e) {
     } else if (inputBox.value.charAt(0) === " ") {
         errormessage.innerHTML = "Task cannot start with a space.";
     } else {
-        const showtasks1 = createshowtasks1();
+        const showtasks1 = createshowtasks1(taskValue, "assigned");
         createTaskName(showtasks1, taskValue);
         createTaskButtons(showtasks1);
-        showtasks1.setAttribute("data-status", "assigned");
         inputBox.value = "";
+        saveTasksToLocalStorage();
         currentFilter = "all";
         document.querySelector("#all").checked = true;
         allTasks();
@@ -88,13 +94,14 @@ function completeTask(showtasks1) {
         showtasks1.querySelector(".taskname").style.backgroundColor= "#D0D0D0";
         showtasks1.setAttribute("data-status", "completed")
         showtasks1.state = 1;
-      } else {
+    } else {
         showtasks1.querySelector(".taskname").style.textDecoration = "none";
         showtasks1.querySelector(".taskname").style.backgroundColor = "aliceblue";
         showtasks1.setAttribute("data-status", "assigned")
         showtasks1.state = 0;
-      }
-      if (currentFilter === "all") {
+    }
+    saveTasksToLocalStorage();
+    if (currentFilter === "all") {
         allTasks();
     } else if (currentFilter === "completed") {
         completedTasks();
@@ -106,6 +113,7 @@ function completeTask(showtasks1) {
 
 function deleteTask(showtasks1) {
     showtasks1.remove();
+    saveTasksToLocalStorage();
     if (currentFilter === "all") {
         allTasks();
     } else if (currentFilter === "completed") {
@@ -114,10 +122,11 @@ function deleteTask(showtasks1) {
         assignedTasks();
     }
 }
+
 function deleteAllTasks() {
     const taskContainers = document.querySelectorAll(".showtasks1");
     taskContainers.forEach(task => task.remove());
-    // Update the display after deleting all tasks
+    saveTasksToLocalStorage();
     checkForEmptyStates(currentFilter);
 }
 
@@ -181,16 +190,16 @@ function editTask(showtasks1) {
     if (taskname.isContentEditable) {
         taskname.contentEditable = "false";
         taskname.blur();
+        saveTasksToLocalStorage();
     } else {
         taskname.contentEditable = "true";
         taskname.focus(); 
     }
-    
 }
-function checkForEmptyStates(filter,  hasFilteredTasks = false) {
+
+function checkForEmptyStates(filter, hasFilteredTasks = false) {
     const taskContainers = document.querySelectorAll(".showtasks1");
     let hasTasks = false;
-    
 
     taskContainers.forEach(task => {
         const status = task.getAttribute("data-status");
@@ -215,33 +224,23 @@ function checkForEmptyStates(filter,  hasFilteredTasks = false) {
     }
 }
 
+function saveTasksToLocalStorage() {
+    const tasks = [];
+    const taskContainers = document.querySelectorAll(".showtasks1");
+    taskContainers.forEach(task => {
+        const taskName = task.querySelector(".taskname").innerText;
+        const taskStatus = task.getAttribute("data-status");
+        tasks.push({ name: taskName, status: taskStatus });
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
-
-// function editTask(showtasks1) {
-//     const taskname = showtasks1.querySelector(".taskname");
-
-//     if (taskname.isContentEditable) {
-//         // Add event listener for "Enter" key
-//         taskname.addEventListener("keydown", function(event) {
-//             if (event.key === "Enter") {
-//                 event.preventDefault(); // Prevent new line
-//                 taskname.contentEditable = "false";
-//                 taskname.blur();
-//                 // Remove event listener after use to avoid multiple handlers
-//                 taskname.removeEventListener("keydown", arguments.callee);
-//             }
-//         });
-        
-//         // When clicking outside the taskname element, finish editing
-//         taskname.addEventListener("blur", function() {
-//             taskname.contentEditable = "false";
-//         });
-
-//         taskname.focus();
-//     } else {
-//         taskname.contentEditable = "true";
-//         taskname.focus(); 
-//     }
-// }
-
-
+function loadTasksFromLocalStorage() {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.forEach(task => {
+        const showtasks1 = createshowtasks1(task.name, task.status);
+        createTaskName(showtasks1, task.name);
+        createTaskButtons(showtasks1);
+    });
+    checkForEmptyStates(currentFilter);
+}
