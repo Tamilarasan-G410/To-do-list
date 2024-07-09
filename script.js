@@ -1,6 +1,7 @@
 const inputBox = document.querySelector("#inputtask");
 const inputButton = document.querySelector(".button");
 const showtasks = document.querySelector(".showtasks");
+const errormessage = document.querySelector(".error-message")
 const noTasksMessage = document.querySelector(".no-tasks-message");
 const noCompletedTasksMessage = document.querySelector(".no-completed-tasks-message");
 const noAssignedTasksMessage = document.querySelector(".no-assigned-tasks-message");
@@ -10,6 +11,10 @@ const form =document.querySelector("#form");
 form.addEventListener("submit", addTask);
 let currentFilter = "all";
 checkForEmptyStates(currentFilter);
+inputBox.addEventListener("click", () => {
+    errormessage.innerHTML = "";
+});
+
 
 function createshowtasks1() {
     const showtasks1 = document.createElement("div");
@@ -59,13 +64,16 @@ function createTaskButtons(showtasks1) {
 
 function addTask(e) {
     e.preventDefault();
-    if (inputBox.value === "") {
-        alert("Enter a value");
+    const taskValue = inputBox.value.trim();
+    if (taskValue === "") {
+        errormessage.innerHTML = "Task cannot be empty.";
+    } else if (inputBox.value.charAt(0) === " ") {
+        errormessage.innerHTML = "Task cannot start with a space.";
     } else {
         const showtasks1 = createshowtasks1();
-        createTaskName(showtasks1);
+        createTaskName(showtasks1, taskValue);
         createTaskButtons(showtasks1);
-        showtasks1.setAttribute("data-status", "assigned")
+        showtasks1.setAttribute("data-status", "assigned");
         inputBox.value = "";
         currentFilter = "all";
         document.querySelector("#all").checked = true;
@@ -235,3 +243,5 @@ function checkForEmptyStates(filter,  hasFilteredTasks = false) {
 //         taskname.focus(); 
 //     }
 // }
+
+

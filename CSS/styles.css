@@ -4,7 +4,7 @@ html{
     
 }
 body {
-    background-image: url("../images/20282258_6206160.jpg");
+    background-image: url("../images/white-cloud-blue-sky.jpg");
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat; 
@@ -32,19 +32,20 @@ body {
     height: 17%;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0%;
 }
 .container form{
-    height:100%;
+    height:50%;
     width:100%;
     display:flex;
     justify-content: center;
     align-items: center;
 }
 .container input{
-    height:23%;
+    height:49%;
     width:30%;
     font-size: 16px;
     border: none;
@@ -67,7 +68,7 @@ body {
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
-    height:24%;
+    height:52%;
     width:4%;
     padding: 10px;
     font-size: 17px;
@@ -77,6 +78,17 @@ body {
 
 .button:hover{
     background-color:#a7c7af;
+}
+.error-message{
+    margin:0%;
+    padding-bottom: 1%;
+    width:100%;
+    height:30%;
+    text-align: center;
+    margin-right: 20%;
+    color: red;
+    font-weight: bold;
+    font-size: 19px;
 }
 .tasks{
     padding: 2%;
