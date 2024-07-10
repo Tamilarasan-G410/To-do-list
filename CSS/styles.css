@@ -268,21 +268,21 @@ body {
     width: 7%;
   }
   .buttons {
-    width: 40%;
+    width: 24%;
     padding-left: 2%;
   }
   .button1 {
     width: 23%;
   }
   .taskname {
-    width: 65%;
+    width: 76%;
     text-overflow: ellipsis;
     overflow: hidden;
   }
   .checkbtni,
   .deletebtni,
   .editbtni {
-    width: 35%;
+    width: 30%;
     object-fit: contain;
   }
 }
