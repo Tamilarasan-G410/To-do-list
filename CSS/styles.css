@@ -2,6 +2,7 @@ html {
   height: 100%;
   width: 100%;
 }
+
 body {
   background-image: url("../images/background.jpg");
   background-size: cover;
@@ -14,6 +15,7 @@ body {
   width: 100%;
   font-family: sans-serif;
 }
+
 .whole {
   width: 100%;
   height: 100%;
@@ -23,9 +25,11 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 .title {
   color: #413f64;
 }
+
 .container {
   height: 17%;
   width: 100%;
@@ -35,15 +39,17 @@ body {
   align-items: center;
   margin: 0%;
 }
+
 .container form {
-  height: 50%;
+  height: 35%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .container input {
-  height: 49%;
+  height: 65%;
   width: 30%;
   font-size: 16px;
   border: none;
@@ -57,15 +63,15 @@ body {
 .container input:focus {
   background-color: white;
 }
+
 .button {
   border: none;
   background-color: #413f64;
   color: white;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
   cursor: pointer;
-  height: 52%;
+  height: 68%;
   width: 4%;
   padding: 10px;
   font-size: 17px;
@@ -76,43 +82,63 @@ body {
 .button:hover {
   background-color: #2f2b61;
 }
+
 .error-message {
   margin: 0%;
-  padding-bottom: 1%;
-  width: 100%;
+  width: 33%;
   height: 30%;
   text-align: center;
-  margin-right: 20%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
   color: red;
-  font-weight: bold;
-  font-size: 19px;
+  font-size: 13px;
 }
+
 .tasks {
-  padding: 2%;
-  height: 50%;
-  width: 70%;
+  padding: 1.5%;
+  padding-bottom: 0%;
+  height: 44%;
+  width: 55%;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  padding-top: 0%;
 }
+
+.rad {
+  display: flex;
+}
+
 .rdbtn {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   padding-top: 1%;
+  padding-bottom: 1%;
   accent-color: #413f64;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  margin-bottom: 2%;
+  width: 30%;
 }
+
 .rdbtn label {
   font-size: 23px;
   margin: 0%;
   padding-right: 1%;
 }
+
 .showtasks {
   margin-top: 2%;
-  height: 85%;
+  height: 90%;
   overflow: auto;
 }
+
 .showtasks1 {
   height: 19%;
   padding: 0%;
@@ -121,27 +147,40 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .taskname {
   height: 35%;
-  width: 85%;
+  width: 75%;
   padding: 0.5%;
   padding-top: 1%;
   padding-left: 2%;
   margin-left: 1%;
   border-radius: 30px;
-  font-size: 20px;
+  font-size: 16px;
   background-color: aliceblue;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   border: none;
   outline: none;
-  cursor:default;
+  cursor: default;
 }
+
+.taskname.error {
+  border-color: red;
+  color: red;
+}
+
+.taskname.error::placeholder {
+  color: red;
+}
+
 .buttons {
-  width: 15%;
+  width: 20%;
   display: flex;
+  justify-content: space-evenly;
 }
+
 .checkbtn,
 .deletebtn,
 .editbtn {
@@ -150,34 +189,39 @@ body {
   cursor: pointer;
   font-size: 19px;
   cursor: pointer;
-  width: 50%;
+  width: 24%;
   border-radius: 23px;
   margin: 0 5px;
 }
+
 .checkbtni,
 .deletebtni,
 .editbtni {
   width: 50%;
   height: 100%;
-  object-fit: contain;
+  object-fit: scale-down;
 }
 
 .editbtn:hover {
   background-color: #2f2b61;
 }
+
 .checkbtn:hover {
   background-color: #2f2b61;
 }
+
 .deletebtn:hover {
   background-color: #2f2b61;
 }
+
 .finalbutton {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 90%;
+  width: 56%;
   padding-top: 1%;
 }
+
 .delete-all {
   border: none;
   background-color: #413f64;
@@ -189,9 +233,11 @@ body {
   border-radius: 23px;
   padding: 10px;
 }
+
 .delete-all:hover {
   background-color: #2f2b61;
 }
+
 .message-container {
   display: flex;
   justify-content: center;
@@ -202,90 +248,141 @@ body {
 }
 
 @media screen and (max-width: 425px) {
+  .rdbtn {
+    width: 88%;
+  }
+
+  .finalbutton {
+    width: 90%;
+  }
+
+  .error-message {
+    width: 68%;
+  }
+
   .rdbtn label {
     font-size: 18px;
   }
+
   .container input {
     width: 50%;
     padding-left: 5%;
   }
+
   .button {
     width: 23%;
   }
+
   .buttons {
     width: 50%;
     padding-left: 2%;
   }
+
   .button1 {
     font-size: 13px;
     width: 30%;
     margin: 1%;
     padding: 2%;
   }
+
   .taskname {
     width: 80%;
     text-overflow: ellipsis;
     overflow: hidden;
   }
+
   .tasks {
     width: 90%;
   }
+
   .checkbtni,
-  .deletebtn i,
+  .deletebtni,
   .editbtni {
-    width: 64%;
+    width: 75%;
     object-fit: contain;
   }
 }
+
 @media screen and (min-width: 426px) and (max-width: 768px) {
-  .rdbtn label {
-    font-size: 21px;
+  .rdbtn {
+    width: 60%;
   }
+
+  .finalbutton {
+    width: 60%;
+  }
+
+  .error-message {
+    width: 38%;
+  }
+  .rdbtn label {
+    font-size: 18px;
+  }
+
   .button {
     width: 12%;
   }
+
   .buttons {
     width: 40%;
     padding-left: 2%;
   }
+
   .button1 {
     width: 30%;
   }
+
   .taskname {
     width: 60%;
     text-overflow: ellipsis;
     overflow: hidden;
   }
+
   .checkbtni,
   .deletebtni,
   .editbtni {
-    width: 34%;
+    width: 60%;
     object-fit: contain;
   }
 }
+
 @media screen and (min-width: 769px) and (max-width: 1123px) {
+  .rdbtn {
+    width: 37%;
+  }
   .rdbtn label {
     font-size: 21px;
   }
+
   .button {
     width: 7%;
   }
+
   .buttons {
     width: 24%;
     padding-left: 2%;
   }
+
   .button1 {
     width: 23%;
   }
+
   .taskname {
     width: 76%;
     text-overflow: ellipsis;
     overflow: hidden;
   }
+
   .checkbtni,
   .deletebtni,
   .editbtni {
-    width: 30%;
+    width: 85%;
     object-fit: contain;
   }
+  checkbtn,
+.deletebtn,
+.editbtn {
+  width: 24%;
+  
+}
 }
