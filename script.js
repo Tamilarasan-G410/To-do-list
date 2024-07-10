@@ -50,6 +50,10 @@ function createTaskName(showtasks1, taskName) {
     const taskname = document.createElement("p");
     taskname.classList.add("taskname");
     taskname.innerHTML = taskName;
+    if (showtasks1.state === 1) {
+        taskname.style.textDecoration = "line-through";
+        taskname.style.backgroundColor = "#D0D0D0";
+    }
     showtasks1.append(taskname);
 }
 //function to create the buttons
