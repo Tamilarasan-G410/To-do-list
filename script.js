@@ -47,9 +47,10 @@ function createshowtasks1(taskName, taskStatus) {
 
 //function to get the taskname from the input form
 function createTaskName(showtasks1, taskName) {
-    const taskname = document.createElement("p");
+    const taskname = document.createElement("input");
     taskname.classList.add("taskname");
-    taskname.innerHTML = taskName;
+    taskname.value = taskName;
+    taskname.readOnly=true;
     if (showtasks1.state === 1) {
         taskname.style.textDecoration = "line-through";
         taskname.style.backgroundColor = "#D0D0D0";
@@ -185,15 +186,20 @@ function assignedTasks() {
 //function which facilitates editing the task
 function editTask(showtasks1) {
     const taskname = showtasks1.querySelector(".taskname");
-    if (taskname.isContentEditable) {
-        taskname.contentEditable = "false";
-        taskname.blur();
-        saveTasksToLocalStorage();
+    if (taskname.readOnly) {
+        taskname.readOnly = false;
+        taskname.focus();
+        taskname.style.outline = '2px solid #413f64';
     } else {
-        taskname.contentEditable = "true";
-        taskname.focus(); 
+        taskname.readOnly = true;
+        taskname.blur();
+        taskname.style.outline = 'none';
     }
+    saveTasksToLocalStorage();
 }
+
+
+
 //function to show "no task" messages
 function checkForEmptyStates(filter) {
     const taskContainers = document.querySelectorAll(".showtasks1");
@@ -227,7 +233,7 @@ function saveTasksToLocalStorage() {
     const tasks = [];
     const taskContainers = document.querySelectorAll(".showtasks1");
     taskContainers.forEach(task => {
-        const taskName = task.querySelector(".taskname").innerText;
+        const taskName = task.querySelector(".taskname").value;
         const taskStatus = task.getAttribute("data-status");
         tasks.push({ name: taskName, status: taskStatus });
     });
