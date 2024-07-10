@@ -52,15 +52,15 @@ function createTaskName(showtasks1, taskName) {
     taskname.value = taskName;
     taskname.readOnly=true;
     if (showtasks1.state === 1) {
-        taskname.style.textDecoration = "line-through";
         taskname.style.backgroundColor = "#D0D0D0";
     }
     showtasks1.append(taskname);
 }
 //function to create the buttons
-function createButton(buttonClass, imgSource, imgClass) {
+function createButton(buttonClass, imgSource, imgClass,title) {
     const button = document.createElement("button");
     button.classList.add(buttonClass);
+    button.title=title;
     const img = document.createElement("img");
     img.src = imgSource;
     img.classList.add(imgClass);
@@ -74,16 +74,15 @@ function createTaskButtons(showtasks1) {
     buttons.classList.add("buttons");
     showtasks1.append(buttons);
 
-    const editButton = createButton("editbtn", "../images/edit.png", "editbtni");
+    const editButton = createButton("editbtn", "../images/edit.png", "editbtni","Edit the task");
     editButton.addEventListener("click", ()=> { editTask(showtasks1); });
-
     buttons.append(editButton);
 
-    const checkButton = createButton("checkbtn", "../images/checked.png", "checkbtni");
+    const checkButton = createButton("checkbtn", "../images/checked.png", "checkbtni","Complete the task");
     checkButton.addEventListener("click", ()=> { completeTask(showtasks1); });
     buttons.append(checkButton);
     
-    const deleteButton = createButton("deletebtn", "../images/delete.png", "deletebtni");
+    const deleteButton = createButton("deletebtn", "../images/bin.png", "deletebtni","Delete the task");
     deleteButton.addEventListener("click", ()=> { deleteTask(showtasks1); });
     buttons.append(deleteButton);
 }
@@ -109,13 +108,12 @@ function addTask(e) {
 }
 // function which facilitates completing the task
 function completeTask(showtasks1) {
+    
     if (showtasks1.state == 0) {
-        showtasks1.querySelector(".taskname").style.textDecoration= "line-through";
         showtasks1.querySelector(".taskname").style.backgroundColor= "#D0D0D0";
         showtasks1.setAttribute("data-status", "completed")
         showtasks1.state = 1;
     } else {
-        showtasks1.querySelector(".taskname").style.textDecoration = "none";
         showtasks1.querySelector(".taskname").style.backgroundColor = "aliceblue";
         showtasks1.setAttribute("data-status", "assigned")
         showtasks1.state = 0;
@@ -183,21 +181,43 @@ function assignedTasks() {
     });
     checkForEmptyStates("assigned");
 }
-//function which facilitates editing the task
+
+let currentlyEditedTask = null;
 function editTask(showtasks1) {
     const taskname = showtasks1.querySelector(".taskname");
+    function saveIfValid() {
+        if (taskname.value.trim() === '') {
+            taskname.classList.add("error");
+            taskname.placeholder = 'Task cannot be empty!';
+            taskname.value = ''; 
+            return false;
+        }
+        return true;
+    }
+
     if (taskname.readOnly) {
+        if (currentlyEditedTask && currentlyEditedTask !== showtasks1) {
+            return;
+        }
         taskname.readOnly = false;
         taskname.focus();
         taskname.style.outline = '2px solid #413f64';
+        taskname.classList.remove("error"); 
+        currentlyEditedTask = showtasks1;
     } else {
-        taskname.readOnly = true;
-        taskname.blur();
-        taskname.style.outline = 'none';
+        if (saveIfValid()) {
+            taskname.readOnly = true;
+            taskname.blur();
+            taskname.style.outline = 'none';
+            saveTasksToLocalStorage();
+            currentlyEditedTask = null; 
+        }
     }
-    saveTasksToLocalStorage();
+    taskname.addEventListener("focus", () => {
+        taskname.classList.remove("error");
+        taskname.placeholder = '';
+    });
 }
-
 
 
 //function to show "no task" messages
