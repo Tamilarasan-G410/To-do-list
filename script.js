@@ -160,12 +160,10 @@ function allTasks() {
 //function to show tasks in completed section 
 function completedTasks() {
     const taskContainers = document.querySelectorAll(".showtasks1");
-    let hasCompletedTasks = false;
     taskContainers.forEach(task => {
         const status = task.getAttribute("data-status");
         if (status === "completed") {
             task.style.display = "flex";
-            hasCompletedTasks = true;
         } else {
             task.style.display = "none";
         }
@@ -175,12 +173,10 @@ function completedTasks() {
 //function to show tasks in assigned section
 function assignedTasks() {
     const taskContainers = document.querySelectorAll(".showtasks1");
-    let hasAssignedTasks = false;
     taskContainers.forEach(task => {
         const status = task.getAttribute("data-status");
         if (status === "assigned") {
             task.style.display = "flex";
-            hasAssignedTasks = true;
         }  else  {
             task.style.display = "none";
         }
