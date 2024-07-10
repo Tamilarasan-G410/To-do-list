@@ -75,16 +75,16 @@ function createTaskButtons(showtasks1) {
     showtasks1.append(buttons);
 
     const editButton = createButton("editbtn", "../images/edit.png", "editbtni");
-    editButton.addEventListener("click", function() { editTask(showtasks1); });
+    editButton.addEventListener("click", ()=> { editTask(showtasks1); });
 
     buttons.append(editButton);
 
     const checkButton = createButton("checkbtn", "../images/checked.png", "checkbtni");
-    checkButton.addEventListener("click", function() { completeTask(showtasks1); });
+    checkButton.addEventListener("click", ()=> { completeTask(showtasks1); });
     buttons.append(checkButton);
     
     const deleteButton = createButton("deletebtn", "../images/delete.png", "deletebtni");
-    deleteButton.addEventListener("click", function() { deleteTask(showtasks1); });
+    deleteButton.addEventListener("click", ()=> { deleteTask(showtasks1); });
     buttons.append(deleteButton);
 }
 // function to validate the input in the inputbox and call the above functions
