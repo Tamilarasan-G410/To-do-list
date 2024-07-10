@@ -5,29 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS\styles.css" />
     <link rel="icon" type="image/x-icon" href="images\check-list.png">
-    <title>To-do-list</title>
+    <title>To-Do List</title>
 </head>
 <body>
     <div class="whole">
         <div>
-            <h1 class="title">To-do-list!</h1>
+            <h1 class="title">To-Do List</h1>
         </div>    
         <div class="container">
             <form id="form">
-            <input type="text" id="inputtask" maxlength="150" placeholder="Add task" autocomplete="off">
-            <button class="button" type="submit">Add</button>
+            <input type="text" id="inputtask" maxlength="150" placeholder="Enter the task" autocomplete="off">
+            <button class="button" type="submit" title="Add the task">Add</button>
             </form>
-            <span class="error-message"></span>
+            <div class="error-message"></div>
         </div>
-        <div class="tasks">
-            <div class="rdbtn">
+        <div class="rdbtn">
+            <div class="rad">
                 <input type="radio" name="taskFilter" id="all" value="All" checked>
                 <label for="All"><b>All</b></label>
+            </div>
+            <div class="rad">
                 <input type="radio" name="taskFilter" id="assigned" value="Assigned">
                 <label for="Assigned"><b>Assigned</b></label>
+            </div>
+            <div class="rad">
                 <input type="radio" name="taskFilter" id="completed" value="Completed">
                 <label for="Completed"><b>Completed</b></label>
             </div>
+        </div>
+        <div class="tasks">
             <div class="showtasks">
                 <div class="message-container">
                     <p class="no-tasks-message" style="display: none;">No tasks available.</p>
