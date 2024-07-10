@@ -60,7 +60,6 @@ function createTaskName(showtasks1, taskName) {
 function createButton(buttonClass, imgSource, imgClass) {
     const button = document.createElement("button");
     button.classList.add(buttonClass);
-    
     const img = document.createElement("img");
     img.src = imgSource;
     img.classList.add(imgClass);
