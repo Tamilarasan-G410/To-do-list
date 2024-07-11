@@ -188,10 +188,24 @@ function deleteTask(showtasks1) {
 //function which facilitates deleting all the tasks
 function deleteAllTasks() {
     const taskContainers = document.querySelectorAll(".showtasks1");
-    taskContainers.forEach(task => task.remove());
-    saveTasksToLocalStorage();
-    checkForEmptyStates(currentFilter);
+    taskContainers.forEach(task => {
+        const status = task.getAttribute("data-status");
+        if (currentFilter==="all") {
+            task.remove();
+            saveTasksToLocalStorage();
+            checkForEmptyStates("all");
+        } else if (currentFilter==="assigned" &&status === "assigned") {
+            task.remove();
+            saveTasksToLocalStorage();
+            checkForEmptyStates("assigned");
+        }else if (currentFilter==="completed" &&status === "completed") {
+            task.remove();
+            saveTasksToLocalStorage();
+            checkForEmptyStates("completed");
+        }
+    });
 }
+
 //function to show tasks in all section
 function allTasks() {
     const taskContainers = document.querySelectorAll(".showtasks1");
