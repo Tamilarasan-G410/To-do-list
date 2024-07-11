@@ -36,7 +36,7 @@ checkForEmptyStates(currentFilter);
 document.addEventListener("DOMContentLoaded", loadTasksFromLocalStorage);
 
 //function to create the tasks
-function createshowtasks1(taskName, taskStatus) {
+function createshowtasks1(taskStatus) {
     const showtasks1 = document.createElement("div");
     showtasks1.classList.add("showtasks1");
     showtasks.append(showtasks1);
@@ -96,7 +96,7 @@ function addTask(e) {
     } else if (inputBox.value.charAt(0) === " ") {
         errormessage.innerHTML = "Cannot start with a space.";
     } else {
-        const showtasks1 = createshowtasks1(taskValue, "assigned");
+        const showtasks1 = createshowtasks1("assigned");
         createTaskName(showtasks1, taskValue);
         createTaskButtons(showtasks1);
         inputBox.value = "";
@@ -283,7 +283,7 @@ function saveTasksToLocalStorage() {
 function loadTasksFromLocalStorage() {
     const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     tasks.forEach(task => {
-        const showtasks1 = createshowtasks1(task.name, task.status);
+        const showtasks1 = createshowtasks1(task.status);
         createTaskName(showtasks1, task.name);
         createTaskButtons(showtasks1);
     });
