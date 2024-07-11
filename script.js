@@ -55,6 +55,7 @@ function createTaskName(showtasks1, taskName) {
         taskname.style.backgroundColor = "#D0D0D0";
     }
     showtasks1.append(taskname);
+    
 }
 //function to create the buttons
 function createButton(buttonClass, imgSource, imgClass,title) {
@@ -93,7 +94,7 @@ function addTask(e) {
     if (taskValue === "") {
         errormessage.innerHTML = "Task cannot be empty.";
     } else if (inputBox.value.charAt(0) === " ") {
-        errormessage.innerHTML = "Task cannot start with a space.";
+        errormessage.innerHTML = "Cannot start with a space.";
     } else {
         const showtasks1 = createshowtasks1(taskValue, "assigned");
         createTaskName(showtasks1, taskValue);
@@ -106,17 +107,62 @@ function addTask(e) {
         checkForEmptyStates(currentFilter);
     }
 }
+let currentlyEditedTask = null;
+function editTask(showtasks1) {
+    const taskname = showtasks1.querySelector(".taskname");
+    const cb = showtasks1.querySelector(".checkbtn")
+    function saveIfValid() {
+        if (taskname.value.trim() === '') {
+            taskname.classList.add("error");
+            taskname.placeholder = 'Task cannot be empty!';
+            taskname.value = ''; 
+            return false;
+        }
+        return true;
+    }
+    if (taskname.readOnly) {
+        if (currentlyEditedTask && currentlyEditedTask !== showtasks1) {
+            return;
+        }
+        
+        taskname.readOnly = false;
+        taskname.focus();
+        taskname.style.outline = '2px solid #413f64';
+        taskname.classList.remove("error");
+        cb.disabled=true;
+        inputBox.disabled=true;
+        inputButton.disabled=true;
+        currentlyEditedTask = showtasks1;
+    } else {
+        if (saveIfValid()) {
+            taskname.readOnly = true;
+            taskname.blur();
+            taskname.style.outline = 'none';
+            cb.disabled=false;
+            inputBox.disabled=false;
+            inputButton.disabled=false;
+            saveTasksToLocalStorage();
+            currentlyEditedTask = null; 
+        }
+    }
+    taskname.addEventListener("focus", () => {
+        taskname.classList.remove("error");
+        taskname.placeholder = '';
+    });
+}
 // function which facilitates completing the task
 function completeTask(showtasks1) {
-    
+const eb = showtasks1.querySelector(".editbtn");   
     if (showtasks1.state == 0) {
         showtasks1.querySelector(".taskname").style.backgroundColor= "#D0D0D0";
         showtasks1.setAttribute("data-status", "completed")
         showtasks1.state = 1;
+        eb.disabled=true;
     } else {
         showtasks1.querySelector(".taskname").style.backgroundColor = "aliceblue";
         showtasks1.setAttribute("data-status", "assigned")
         showtasks1.state = 0;
+        eb.disabled=false;
     }
     saveTasksToLocalStorage();
     if (currentFilter === "all") {
@@ -181,44 +227,6 @@ function assignedTasks() {
     });
     checkForEmptyStates("assigned");
 }
-
-let currentlyEditedTask = null;
-function editTask(showtasks1) {
-    const taskname = showtasks1.querySelector(".taskname");
-    function saveIfValid() {
-        if (taskname.value.trim() === '') {
-            taskname.classList.add("error");
-            taskname.placeholder = 'Task cannot be empty!';
-            taskname.value = ''; 
-            return false;
-        }
-        return true;
-    }
-    if (taskname.readOnly) {
-        if (currentlyEditedTask && currentlyEditedTask !== showtasks1) {
-            return;
-        }
-        taskname.readOnly = false;
-        taskname.focus();
-        taskname.style.outline = '2px solid #413f64';
-        taskname.classList.remove("error"); 
-        currentlyEditedTask = showtasks1;
-    } else {
-        if (saveIfValid()) {
-            taskname.readOnly = true;
-            taskname.blur();
-            taskname.style.outline = 'none';
-            saveTasksToLocalStorage();
-            currentlyEditedTask = null; 
-        }
-    }
-    taskname.addEventListener("focus", () => {
-        taskname.classList.remove("error");
-        taskname.placeholder = '';
-    });
-}
-
-
 //function to show "no task" messages
 function checkForEmptyStates(filter) {
     const taskContainers = document.querySelectorAll(".showtasks1");
