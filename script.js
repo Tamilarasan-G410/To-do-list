@@ -159,15 +159,21 @@ function editTask(showtasks1) {
 // function which facilitates completing the task
 function completeTask(showtasks1) {
 const eb = showtasks1.querySelector(".editbtn");   
+const cb = showtasks1.querySelector(".checkbtn");
+const cbi = cb.querySelector(".checkbtni")
     if (showtasks1.state == 0) {
         showtasks1.querySelector(".taskname").style.backgroundColor= "#D0D0D0";
         showtasks1.setAttribute("data-status", "completed")
         showtasks1.state = 1;
+        cbi.src="../images/undo.png";
+        cb.title="Undo task completion";
         eb.disabled=true;
     } else {
         showtasks1.querySelector(".taskname").style.backgroundColor = "aliceblue";
         showtasks1.setAttribute("data-status", "assigned")
         showtasks1.state = 0;
+        cbi.src="../images/checked.png";
+        cb.title="Complete the task";
         eb.disabled=false;
     }
     saveTasksToLocalStorage();
