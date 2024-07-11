@@ -124,7 +124,6 @@ function editTask(showtasks1) {
         if (currentlyEditedTask && currentlyEditedTask !== showtasks1) {
             return;
         }
-        
         taskname.readOnly = false;
         taskname.focus();
         taskname.style.outline = '2px solid #413f64';
