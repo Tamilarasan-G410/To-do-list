@@ -75,15 +75,15 @@ function createTaskButtons(showtasks1) {
     buttons.classList.add("buttons");
     showtasks1.append(buttons);
 
-    const editButton = createButton("editbtn", "../images/edit.png", "editbtni","Edit the task");
+    const editButton = createButton("editbtn", "./images/edit.png", "editbtni","Edit the task");
     editButton.addEventListener("click", ()=> { editTask(showtasks1); });
     buttons.append(editButton);
 
-    const checkButton = createButton("checkbtn", "../images/checked.png", "checkbtni","Complete the task");
+    const checkButton = createButton("checkbtn", "./images/checked.png", "checkbtni","Complete the task");
     checkButton.addEventListener("click", ()=> { completeTask(showtasks1); });
     buttons.append(checkButton);
     
-    const deleteButton = createButton("deletebtn", "../images/bin.png", "deletebtni","Delete the task");
+    const deleteButton = createButton("deletebtn", "./images/bin.png", "deletebtni","Delete the task");
     deleteButton.addEventListener("click", ()=> { deleteTask(showtasks1); });
     buttons.append(deleteButton);
 }
@@ -135,7 +135,7 @@ function editTask(showtasks1) {
         inputBox.disabled=true;
         inputButton.disabled=true;
         eb.title="Save the task";
-        ebi.src="../images/diskette.png";
+        ebi.src="./images/diskette.png";
         currentlyEditedTask = showtasks1;
     } else {
         if (saveIfValid()) {
@@ -145,7 +145,7 @@ function editTask(showtasks1) {
             cb.disabled=false;
             inputBox.disabled=false;
             inputButton.disabled=false;
-            ebi.src="../images/edit.png";
+            ebi.src="./images/edit.png";
             eb.title="Edit the task";
             saveTasksToLocalStorage();
             currentlyEditedTask = null; 
@@ -165,14 +165,14 @@ const cbi = cb.querySelector(".checkbtni")
         showtasks1.querySelector(".taskname").style.backgroundColor= "#D0D0D0";
         showtasks1.setAttribute("data-status", "completed")
         showtasks1.state = 1;
-        cbi.src="../images/undo.png";
+        cbi.src="./images/undo.png";
         cb.title="Undo task completion";
         eb.disabled=true;
     } else {
         showtasks1.querySelector(".taskname").style.backgroundColor = "aliceblue";
         showtasks1.setAttribute("data-status", "assigned")
         showtasks1.state = 0;
-        cbi.src="../images/checked.png";
+        cbi.src="./images/checked.png";
         cb.title="Complete the task";
         eb.disabled=false;
     }
