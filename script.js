@@ -194,7 +194,6 @@ function editTask(showtasks1) {
         }
         return true;
     }
-
     if (taskname.readOnly) {
         if (currentlyEditedTask && currentlyEditedTask !== showtasks1) {
             return;
