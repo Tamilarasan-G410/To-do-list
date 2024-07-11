@@ -107,10 +107,13 @@ function addTask(e) {
         checkForEmptyStates(currentFilter);
     }
 }
+// function that facilitates edit of the task
 let currentlyEditedTask = null;
 function editTask(showtasks1) {
     const taskname = showtasks1.querySelector(".taskname");
-    const cb = showtasks1.querySelector(".checkbtn")
+    const cb = showtasks1.querySelector(".checkbtn");
+    const eb = showtasks1.querySelector(".editbtn");
+    const ebi = eb.querySelector(".editbtni")
     function saveIfValid() {
         if (taskname.value.trim() === '') {
             taskname.classList.add("error");
@@ -131,6 +134,8 @@ function editTask(showtasks1) {
         cb.disabled=true;
         inputBox.disabled=true;
         inputButton.disabled=true;
+        eb.title="Save the task";
+        ebi.src="../images/diskette.png";
         currentlyEditedTask = showtasks1;
     } else {
         if (saveIfValid()) {
@@ -140,6 +145,8 @@ function editTask(showtasks1) {
             cb.disabled=false;
             inputBox.disabled=false;
             inputButton.disabled=false;
+            ebi.src="../images/edit.png";
+            eb.title="Edit the task";
             saveTasksToLocalStorage();
             currentlyEditedTask = null; 
         }
