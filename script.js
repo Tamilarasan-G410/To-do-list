@@ -224,8 +224,10 @@ function updateDeleteAllButtonText(currentFilter){
         deleteAllButton.innerHTML="Delete all tasks";
     } else if(currentFilter==="assigned"){
         deleteAllButton.innerHTML="Delete all assigned tasks";
+        deleteAllButton.title="Delete all assigned tasks";
     } else if(currentFilter==="completed"){
         deleteAllButton.innerHTML="Delete all completed tasks";
+        deleteAllButton.title="Delete all completed tasks";
     }
 }
 
