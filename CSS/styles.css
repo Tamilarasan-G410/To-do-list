@@ -25,7 +25,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
 .title {
   color: #413f64;
 }
@@ -107,16 +106,12 @@ body {
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
   padding-top: 0%;
 }
-
-.rad {
+nav {
   display: flex;
-}
-
-.rdbtn {
-  display: flex;
+  position: relative;
   justify-content: space-evenly;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  height: 4%;
+  align-items: center;
   accent-color: #413f64;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
@@ -127,10 +122,45 @@ body {
   width: 30%;
 }
 
-.rdbtn label {
-  font-size: 23px;
-  margin: 0%;
-  padding-right: 1%;
+nav input[type="radio"] {
+  display: none;
+}
+
+nav label {
+  border: none;
+  background: none;
+  font-size: 19px;
+  color: #413f64;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: 33.33%;
+  cursor: pointer;
+}
+
+nav .animation {
+  position: absolute;
+  height: 100%;
+  z-index: 0;
+  top: 0;
+  background: #413f64;
+  border-radius: 20px;
+  transition: all 0.5s ease 0s;
+  width: 33.33%;
+}
+nav input[type="radio"]:checked + label {
+  color: white;
+}
+nav input#all:checked ~ .animation {
+  left: 0;
+}
+
+nav input#assigned:checked ~ .animation {
+  left: 33.33%;
+}
+
+nav input#completed:checked ~ .animation {
+  left: 66.66%;
 }
 
 .showtasks {
@@ -247,7 +277,7 @@ body {
 }
 
 @media screen and (max-width: 425px) {
-  .rdbtn {
+  nav {
     width: 88%;
   }
 
@@ -259,7 +289,7 @@ body {
     width: 68%;
   }
 
-  .rdbtn label {
+  nav label {
     font-size: 18px;
   }
 
@@ -303,7 +333,7 @@ body {
 }
 
 @media screen and (min-width: 426px) and (max-width: 768px) {
-  .rdbtn {
+  nav {
     width: 60%;
   }
 
@@ -314,7 +344,7 @@ body {
   .error-message {
     width: 38%;
   }
-  .rdbtn label {
+  nav label {
     font-size: 18px;
   }
 
@@ -346,10 +376,10 @@ body {
 }
 
 @media screen and (min-width: 769px) and (max-width: 1123px) {
-  .rdbtn {
+  nav {
     width: 37%;
   }
-  .rdbtn label {
+  nav label {
     font-size: 21px;
   }
 
@@ -378,9 +408,9 @@ body {
     width: 85%;
     object-fit: contain;
   }
-  checkbtn,
-.deletebtn,
-.editbtn {
+  .checkbtn,
+  .deletebtn,
+  .editbtn {
   width: 24%;
   
 }
