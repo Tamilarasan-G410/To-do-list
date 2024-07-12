@@ -219,6 +219,16 @@ function deleteAllTasks() {
     });
 }
 
+function updateDeleteAllButtonText(currentFilter){
+    if(currentFilter==="all"){
+        deleteAllButton.innerHTML="Delete all tasks";
+    } else if(currentFilter==="assigned"){
+        deleteAllButton.innerHTML="Delete all assigned tasks";
+    } else if(currentFilter==="completed"){
+        deleteAllButton.innerHTML="Delete all completed tasks";
+    }
+}
+
 //function to show tasks in all section
 function allTasks() {
     const taskContainers = document.querySelectorAll(".showtasks1");
@@ -226,6 +236,7 @@ function allTasks() {
         task.style.display = "flex";
     });
     checkForEmptyStates("all");
+    updateDeleteAllButtonText("all");
 }
 //function to show tasks in completed section 
 function completedTasks() {
@@ -239,6 +250,7 @@ function completedTasks() {
         }
     });
     checkForEmptyStates("completed");
+    updateDeleteAllButtonText("completed");
 }
 //function to show tasks in assigned section
 function assignedTasks() {
@@ -252,6 +264,7 @@ function assignedTasks() {
         }
     });
     checkForEmptyStates("assigned");
+    updateDeleteAllButtonText("assigned");
 }
 //function to show "no task" messages
 function checkForEmptyStates(filter) {
