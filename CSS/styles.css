@@ -273,7 +273,7 @@ nav input#completed:checked ~ .animation {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  color: black;
+  color: #413f64;
 }
 
 @media screen and (max-width: 425px) {
