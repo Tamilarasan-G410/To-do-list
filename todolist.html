@@ -9,42 +9,37 @@
 </head>
 <body>
     <div class="whole">
-        <div>
-            <h1 class="title">To-Do List</h1>
-        </div>    
-        <div class="container">
-            <form id="form">
-            <input type="text" id="inputtask" maxlength="150" placeholder="Enter the task" autocomplete="off">
-            <button class="button" type="submit" title="Add the task">Add</button>
-            </form>
-            <div class="error-message"></div>
-        </div>
-        <div class="rdbtn">
-            <div class="rad">
+            <div>
+                <h1 class="title">To-Do List</h1>
+            </div>    
+            <div class="container">
+                <form id="form">
+                <input type="text" id="inputtask" maxlength="150" placeholder="Enter the task" autocomplete="off">
+                <button class="button" type="submit" title="Add the task">Add</button>
+                </form>
+                <div class="error-message"></div>
+            </div>
+            <nav>
                 <input type="radio" name="taskFilter" id="all" value="All" checked>
-                <label for="all"><b>All</b></label>
-            </div>
-            <div class="rad">
+                <label for="all">All</label>
                 <input type="radio" name="taskFilter" id="assigned" value="Assigned">
-                <label for="assigned"><b>Assigned</b></label>
-            </div>
-            <div class="rad">
+                <label for="assigned">Assigned</label>
                 <input type="radio" name="taskFilter" id="completed" value="Completed">
-                <label for="completed"><b>Completed</b></label>
-            </div>
-        </div>
-        <div class="tasks">
-            <div class="showtasks">
-                <div class="message-container">
-                    <p class="no-tasks-message" style="display: none;">No tasks available.</p>
-                    <p class="no-completed-tasks-message" style="display: none;">No completed tasks.</p>
-                    <p class="no-assigned-tasks-message" style="display: none;">No assigned tasks.</p>
+                <label for="completed">Completed</label>
+                <div class="animation"></div>
+            </nav>
+            <div class="tasks">
+                <div class="showtasks">
+                    <div class="message-container">
+                        <p class="no-tasks-message" style="display: none;">No tasks available.</p>
+                        <p class="no-completed-tasks-message" style="display: none;">No completed tasks.</p>
+                        <p class="no-assigned-tasks-message" style="display: none;">No assigned tasks.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="finalbutton">
-            <button class="delete-all" title="Delete all the tasks">Delete All Tasks</button>
-        </div>
+            <div class="finalbutton">
+                <button class="delete-all" title="Delete all the tasks">Delete All Tasks</button>
+            </div>
     </div>
     <script src="script.js"></script>
 </body>
