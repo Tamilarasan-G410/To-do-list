@@ -25,6 +25,9 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.heading{
+  margin-top: 3%;
+}
 .title {
   color: #413f64;
 }
@@ -49,7 +52,7 @@ body {
 
 .container input {
   height: 65%;
-  width: 30%;
+  width: 33%;
   font-size: 16px;
   border: none;
   padding-left: 1%;
@@ -84,7 +87,7 @@ body {
 
 .error-message {
   margin: 0%;
-  width: 33%;
+  width: 36%;
   height: 30%;
   text-align: center;
   display: flex;
@@ -98,13 +101,14 @@ body {
   padding: 1.5%;
   padding-bottom: 0%;
   height: 44%;
-  width: 55%;
+  width: 35%;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
   padding-top: 0%;
+  scrollbar-color: #413f64 #EFE9D7;
 }
 nav {
   display: flex;
@@ -119,7 +123,7 @@ nav {
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
   margin-bottom: 2%;
-  width: 30%;
+  width: 38%;
 }
 
 nav input[type="radio"] {
@@ -206,7 +210,7 @@ nav input#completed:checked ~ .animation {
 }
 
 .buttons {
-  width: 20%;
+  width: 30%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -227,7 +231,7 @@ nav input#completed:checked ~ .animation {
 .checkbtni,
 .deletebtni,
 .editbtni {
-  width: 50%;
+  width: 54%;
   height: 100%;
   object-fit: scale-down;
 }
@@ -248,7 +252,7 @@ nav input#completed:checked ~ .animation {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 56%;
+  width: 38%;
   padding-top: 1%;
 }
 
@@ -342,7 +346,7 @@ nav input#completed:checked ~ .animation {
   }
 
   .error-message {
-    width: 38%;
+    width: 55%;
   }
   nav label {
     font-size: 18px;
@@ -373,6 +377,12 @@ nav input#completed:checked ~ .animation {
     width: 60%;
     object-fit: contain;
   }
+  .tasks{
+    width:58%;
+  }
+  .container input{
+    width:46%;
+  }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1123px) {
@@ -388,7 +398,7 @@ nav input#completed:checked ~ .animation {
   }
 
   .buttons {
-    width: 24%;
+    width: 45%;
     padding-left: 2%;
   }
 
@@ -397,7 +407,7 @@ nav input#completed:checked ~ .animation {
   }
 
   .taskname {
-    width: 76%;
+    width: 72%;
     text-overflow: ellipsis;
     overflow: hidden;
   }
