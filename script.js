@@ -15,7 +15,10 @@ const form = document.querySelector("#form");
 //event-listeners
 deleteAllButton.addEventListener("click", deleteAllTasks);
 form.addEventListener("submit", addTask);
-inputBox.addEventListener("click", () => {
+inputBox.addEventListener("input", () => {
+    errormessage.innerHTML = "";
+});
+inputBox.addEventListener("focus", () => {
     errormessage.innerHTML = "";
 });
 all.addEventListener("change", () => {
@@ -79,7 +82,7 @@ function createTaskButtons(showtasks1) {
     editButton.addEventListener("click", ()=> { editTask(showtasks1); });
     buttons.append(editButton);
 
-    const checkButton = createButton("checkbtn", "./images/checked.png", "checkbtni","Complete the task");
+    const checkButton = createButton("checkbtn", "./images/radio.png", "checkbtni","Complete the task");
     checkButton.addEventListener("click", ()=> { completeTask(showtasks1); });
     buttons.append(checkButton);
     
@@ -92,13 +95,20 @@ function addTask(e) {
     e.preventDefault();
     const taskValue = inputBox.value.trim();
     if (taskValue === "") {
-        errormessage.innerHTML = "Task cannot be empty.";
+        errormessage.style.color="red";
+        errormessage.innerHTML = "Taskname cannot be empty.";
     } else if (inputBox.value.charAt(0) === " ") {
-        errormessage.innerHTML = "Cannot start with a space.";
+        errormessage.style.color="red";
+        errormessage.innerHTML = "Taskname cannot start with a space.";
     } else {
         const showtasks1 = createshowtasks1("assigned");
         createTaskName(showtasks1, taskValue);
         createTaskButtons(showtasks1);
+        errormessage.style.color="green";
+        errormessage.innerHTML="Task added successfully";
+        setTimeout(() => {
+            errormessage.innerHTML="";
+        }, 1500);
         inputBox.value = "";
         saveTasksToLocalStorage();
         currentFilter = "all";
@@ -113,6 +123,7 @@ function editTask(showtasks1) {
     const taskname = showtasks1.querySelector(".taskname");
     const cb = showtasks1.querySelector(".checkbtn");
     const eb = showtasks1.querySelector(".editbtn");
+    const db = showtasks1.querySelector(".deletebtn")
     const ebi = eb.querySelector(".editbtni")
     function saveIfValid() {
         if (taskname.value.trim() === '') {
@@ -132,6 +143,8 @@ function editTask(showtasks1) {
         taskname.style.outline = '2px solid #413f64';
         taskname.classList.remove("error");
         cb.disabled=true;
+        db.disabled=true;
+        deleteAllButton.disabled=true;
         inputBox.disabled=true;
         inputButton.disabled=true;
         eb.title="Save the task";
@@ -143,6 +156,8 @@ function editTask(showtasks1) {
             taskname.blur();
             taskname.style.outline = 'none';
             cb.disabled=false;
+            db.disabled=false;
+            deleteAllButton.disabled=false;
             inputBox.disabled=false;
             inputButton.disabled=false;
             ebi.src="./images/edit.png";
@@ -165,14 +180,14 @@ const cbi = cb.querySelector(".checkbtni")
         showtasks1.querySelector(".taskname").style.backgroundColor= "#D0D0D0";
         showtasks1.setAttribute("data-status", "completed")
         showtasks1.state = 1;
-        cbi.src="./images/undo.png";
+        cbi.src="./images/check-mark.png";
         cb.title="Undo task completion";
         eb.disabled=true;
     } else {
         showtasks1.querySelector(".taskname").style.backgroundColor = "aliceblue";
         showtasks1.setAttribute("data-status", "assigned")
         showtasks1.state = 0;
-        cbi.src="./images/checked.png";
+        cbi.src="./images/radio.png";
         cb.title="Complete the task";
         eb.disabled=false;
     }
@@ -201,24 +216,21 @@ function deleteTask(showtasks1) {
 //function which facilitates deleting all the tasks
 function deleteAllTasks() {
     const taskContainers = document.querySelectorAll(".showtasks1");
-    taskContainers.forEach(task => {
-        const status = task.getAttribute("data-status");
-        if (currentFilter==="all") {
-            task.remove();
-            saveTasksToLocalStorage();
-            checkForEmptyStates("all");
-        } else if (currentFilter==="assigned" &&status === "assigned") {
-            task.remove();
-            saveTasksToLocalStorage();
-            checkForEmptyStates("assigned");
-        }else if (currentFilter==="completed" &&status === "completed") {
-            task.remove();
-            saveTasksToLocalStorage();
-            checkForEmptyStates("completed");
-        }
-    });
-}
+    let tasksToRemove = [];
+    if (currentFilter === "all" && confirm("Do you want to delete all the tasks?")) {
+        tasksToRemove = Array.from(taskContainers);
+    } else if (currentFilter === "assigned" && confirm("Do you want to delete all the assigned tasks?")) {
+        tasksToRemove = Array.from(taskContainers).filter(task => task.getAttribute("data-status") === "assigned");
+    } else if (currentFilter === "completed" && confirm("Do you want to delete all the completed tasks?")) {
+        tasksToRemove = Array.from(taskContainers).filter(task => task.getAttribute("data-status") === "completed");
+    }
 
+    tasksToRemove.forEach(task => task.remove());
+    if (tasksToRemove.length > 0) {
+        saveTasksToLocalStorage();
+        checkForEmptyStates(currentFilter);
+    }
+}
 function updateDeleteAllButtonText(currentFilter){
     if(currentFilter==="all"){
         deleteAllButton.innerHTML="Delete all tasks";
