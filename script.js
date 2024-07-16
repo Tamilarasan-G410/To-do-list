@@ -59,11 +59,11 @@ function createTaskName(showtasks1, taskName) {
     taskname.classList.add("taskname");
     taskname.value = taskName;
     taskname.readOnly=true;
+    taskname.maxLength=150;
     if (showtasks1.state === 1) {
         taskname.style.backgroundColor = "#D0D0D0";
     }
-    showtasks1.append(taskname);
-    
+    showtasks1.append(taskname); 
 }
 //function to create the buttons
 function createButton(buttonClass, imgSource, imgClass,title) {
@@ -73,7 +73,6 @@ function createButton(buttonClass, imgSource, imgClass,title) {
     const img = document.createElement("img");
     img.src = imgSource;
     img.classList.add(imgClass);
-    
     button.append(img);
     return button;
 }
@@ -87,7 +86,7 @@ function createTaskButtons(showtasks1) {
     editButton.addEventListener("click", ()=> { editTask(showtasks1); });
     buttons.append(editButton);
 
-    const checkButton = createButton("checkbtn", "./images/radio.png", "checkbtni","Complete the task");
+    const checkButton = createButton("checkbtn", "./images/radio-button.png", "checkbtni","Complete the task");
     checkButton.addEventListener("click", ()=> { completeTask(showtasks1); });
     buttons.append(checkButton);
     
@@ -102,9 +101,15 @@ function addTask(e) {
     if (taskValue === "") {
         errormessage.style.color="red";
         errormessage.innerHTML = "Taskname cannot be empty.";
+        setTimeout(() => {
+            errormessage.innerHTML="";
+        }, 1800);
     } else if (inputBox.value.charAt(0) === " ") {
         errormessage.style.color="red";
         errormessage.innerHTML = "Taskname cannot start with a space.";
+        setTimeout(() => {
+            errormessage.innerHTML="";
+        }, 1800);
     } else {
         const showtasks1 = createshowtasks1("assigned");
         createTaskName(showtasks1, taskValue);
@@ -128,17 +133,36 @@ function editTask(showtasks1) {
     const taskname = showtasks1.querySelector(".taskname");
     const cb = showtasks1.querySelector(".checkbtn");
     const eb = showtasks1.querySelector(".editbtn");
-    const db = showtasks1.querySelector(".deletebtn")
-    const ebi = eb.querySelector(".editbtni")
+    const db = showtasks1.querySelector(".deletebtn");
+    const ebi = eb.querySelector(".editbtni");
+
     function saveIfValid() {
         if (taskname.value.trim() === '') {
             taskname.classList.add("error");
             taskname.placeholder = 'Task cannot be empty!';
-            taskname.value = ''; 
+            taskname.value = '';
             return false;
         }
         return true;
     }
+
+    function saveTask() {
+        if (saveIfValid()) {
+            taskname.readOnly = true;
+            taskname.blur();
+            taskname.style.outline = 'none';
+            cb.disabled = false;
+            db.disabled = false;
+            deleteAllButton.disabled = false;
+            inputBox.disabled = false;
+            inputButton.disabled = false;
+            ebi.src = "./images/edit.png";
+            eb.title = "Edit the task";
+            saveTasksToLocalStorage();
+            currentlyEditedTask = null;
+        }
+    }
+
     if (taskname.readOnly) {
         if (currentlyEditedTask && currentlyEditedTask !== showtasks1) {
             return;
@@ -147,33 +171,34 @@ function editTask(showtasks1) {
         taskname.focus();
         taskname.style.outline = '2px solid #413f64';
         taskname.classList.remove("error");
-        cb.disabled=true;
-        db.disabled=true;
-        deleteAllButton.disabled=true;
-        inputBox.disabled=true;
-        inputButton.disabled=true;
-        eb.title="Save the task";
-        ebi.src="./images/diskette.png";
+        cb.disabled = true;
+        db.disabled = true;
+        deleteAllButton.disabled = true;
+        inputBox.disabled = true;
+        inputButton.disabled = true;
+        eb.title = "Save the task";
+        ebi.src = "./images/diskette.png";
         currentlyEditedTask = showtasks1;
     } else {
-        if (saveIfValid()) {
-            taskname.readOnly = true;
-            taskname.blur();
-            taskname.style.outline = 'none';
-            cb.disabled=false;
-            db.disabled=false;
-            deleteAllButton.disabled=false;
-            inputBox.disabled=false;
-            inputButton.disabled=false;
-            ebi.src="./images/edit.png";
-            eb.title="Edit the task";
-            saveTasksToLocalStorage();
-            currentlyEditedTask = null; 
-        }
+        saveTask();
     }
+
     taskname.addEventListener("focus", () => {
         taskname.classList.remove("error");
         taskname.placeholder = '';
+    });
+
+    taskname.addEventListener("input", () => {
+        if (taskname.classList.contains("error")) {
+            taskname.classList.remove("error");
+            taskname.placeholder = '';
+        }
+    });
+
+    taskname.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            saveTask();
+        }
     });
 }
 // Function which facilitates completion of tasks
@@ -192,7 +217,7 @@ function completeTask(showtasks1) {
     } else {
         showtasks1.querySelector(".taskname").style.backgroundColor = "aliceblue";
         showtasks1.setAttribute("data-status", "assigned");
-        cbi.src = "./images/radio.png";
+        cbi.src = "./images/radio-button.png";
         cb.title = "Complete the task";
         eb.disabled = false;
     }
@@ -393,7 +418,7 @@ function loadTasksFromLocalStorage() {
             editButton.disabled = true;
         } else {
             taskNameInput.style.backgroundColor = "aliceblue";
-            checkButtonImg.src = "./images/radio.png";
+            checkButtonImg.src = "./images/radio-button.png";
             showtasks1.querySelector(".checkbtn").title = "Complete the task";
             editButton.disabled = false;
         }
