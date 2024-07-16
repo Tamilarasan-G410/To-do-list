@@ -315,10 +315,10 @@ nav input#completed:checked ~ .animation {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  backdrop-filter: blur(5px); /* Blur effect */
-  z-index: 999; /* Ensure it's on top */
-  display: none; /* Hidden by default */
+  background: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(5px); 
+  z-index: 999; 
+  display: none; 
 }
 @media screen and (max-width: 425px) {
   nav {
