@@ -280,6 +280,47 @@ nav input#completed:checked ~ .animation {
   color: #413f64;
 }
 
+.toast {
+  position: fixed;
+  top: 20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #413f64;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: none; 
+  z-index: 1000;
+}
+.toast button {
+  background-color: white;
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.ynbutton{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.toast button:hover {
+  background-color: rgb(235, 230, 230);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  backdrop-filter: blur(5px); /* Blur effect */
+  z-index: 999; /* Ensure it's on top */
+  display: none; /* Hidden by default */
+}
 @media screen and (max-width: 425px) {
   nav {
     width: 88%;
@@ -335,7 +376,6 @@ nav input#completed:checked ~ .animation {
     object-fit: contain;
   }
 }
-
 @media screen and (min-width: 426px) and (max-width: 768px) {
   nav {
     width: 60%;
