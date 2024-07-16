@@ -11,6 +11,11 @@ const all = document.querySelector("#all");
 const completed = document.querySelector("#completed");
 const assigned = document.querySelector("#assigned");
 const form = document.querySelector("#form");
+const toast = document.querySelector("#toast");
+const toastMessage = document.querySelector("#toast-message");
+const toastConfirm = document.querySelector("#toast-confirm");
+const toastCancel = document.querySelector("#toast-cancel");
+const overlay = document.querySelector(".overlay");
 
 //event-listeners
 deleteAllButton.addEventListener("click", deleteAllTasks);
@@ -171,36 +176,39 @@ function editTask(showtasks1) {
         taskname.placeholder = '';
     });
 }
-// function which facilitates completing the task
+// Function which facilitates completion of tasks
 function completeTask(showtasks1) {
-    const eb = showtasks1.querySelector(".editbtn");   
+    const eb = showtasks1.querySelector(".editbtn");
     const cb = showtasks1.querySelector(".checkbtn");
-    const cbi = cb.querySelector(".checkbtni")
-        if (showtasks1.state == 0) {
-            showtasks1.querySelector(".taskname").style.backgroundColor= "#D0D0D0";
-            showtasks1.setAttribute("data-status", "completed")
-            showtasks1.state = 1;
-            cbi.src="./images/check-mark.png";
-            cb.title="Undo task completion";
-            eb.disabled=true;
-        } else {
-            showtasks1.querySelector(".taskname").style.backgroundColor = "aliceblue";
-            showtasks1.setAttribute("data-status", "assigned")
-            showtasks1.state = 0;
-            cbi.src="./images/radio.png";
-            cb.title="Complete the task";
-            eb.disabled=false;
-        }
-        saveTasksToLocalStorage();
-        if (currentFilter === "all") {
-            allTasks();
-        } else if (currentFilter === "completed") {
-            completedTasks();
-        } else if (currentFilter === "assigned") {
-            assignedTasks();
-        }
-        checkForEmptyStates(currentFilter);
+    const cbi = cb.querySelector(".checkbtni");
+    const currentStatus = showtasks1.getAttribute("data-status");
+
+    if (currentStatus === "assigned") {
+        showtasks1.querySelector(".taskname").style.backgroundColor = "#D0D0D0";
+        showtasks1.setAttribute("data-status", "completed");
+        cbi.src = "./images/check-mark.png";
+        cb.title = "Undo task completion";
+        eb.disabled = true;
+    } else {
+        showtasks1.querySelector(".taskname").style.backgroundColor = "aliceblue";
+        showtasks1.setAttribute("data-status", "assigned");
+        cbi.src = "./images/radio.png";
+        cb.title = "Complete the task";
+        eb.disabled = false;
+    }
+    saveTasksToLocalStorage();
+
+    if (currentFilter === "all") {
+        allTasks();
+    } else if (currentFilter === "completed") {
+        completedTasks();
+    } else if (currentFilter === "assigned") {
+        assignedTasks();
+    }
+
+    checkForEmptyStates(currentFilter);
 }
+
 //function which facilitates  deleting the task
 function deleteTask(showtasks1) {
     showtasks1.remove();
@@ -213,23 +221,67 @@ function deleteTask(showtasks1) {
         assignedTasks();
     }
 }
-//function which facilitates deleting all the tasks
-function deleteAllTasks() {
-    const taskContainers = document.querySelectorAll(".showtasks1");
-    let tasksToRemove = [];
-    if (currentFilter === "all" && confirm("Do you want to delete all the tasks?")) {
-        tasksToRemove = Array.from(taskContainers);
-    } else if (currentFilter === "assigned" && confirm("Do you want to delete all the assigned tasks?")) {
-        tasksToRemove = Array.from(taskContainers).filter(task => task.getAttribute("data-status") === "assigned");
-    } else if (currentFilter === "completed" && confirm("Do you want to delete all the completed tasks?")) {
-        tasksToRemove = Array.from(taskContainers).filter(task => task.getAttribute("data-status") === "completed");
-    }
+// Function to show toast notification
+function showToast(message, onConfirm, onCancel) {
+    toastMessage.textContent = message;
+    toast.style.display = "flex"; 
+    toast.style.flexDirection="column";
+    overlay.style.display = "block";
+    // Handle confirm
+    toastConfirm.onclick = () => {
+        overlay.style.display = "none";
+        toast.style.display = "none";
+        if (onConfirm) onConfirm();
+    };
 
-    tasksToRemove.forEach(task => task.remove());
-    if (tasksToRemove.length > 0) {
-        saveTasksToLocalStorage();
-        checkForEmptyStates(currentFilter);
+    // Handle cancel
+    toastCancel.onclick = () => {
+        overlay.style.display = "none";
+        toast.style.display = "none";
+        if (onCancel) onCancel();
+    };
+
+    setTimeout(() => {
+        toast.style.display = "none";
+        overlay.style.display = "none";
+        if (onCancel) onCancel();
+    }, 10000); 
+}
+
+// Function to delete all tasks based on the current filter
+function deleteAllTasks() {
+    let message;
+    
+    if (currentFilter === "all") {
+        message = "Do you want to delete all tasks?";
+    } else if (currentFilter === "assigned") {
+        message = "Do you want to delete all assigned tasks?";
+    } else if (currentFilter === "completed") {
+        message = "Do you want to delete all completed tasks?";
     }
+    showToast(message, () => {
+        const taskContainers = document.querySelectorAll(".showtasks1");
+        let tasksToRemove = [];
+
+        if (currentFilter === "all") {
+            tasksToRemove = Array.from(taskContainers);
+        } else if (currentFilter === "assigned") {
+            tasksToRemove = Array.from(taskContainers).filter(task => task.getAttribute("data-status") === "assigned");
+        } else if (currentFilter === "completed") {
+            tasksToRemove = Array.from(taskContainers).filter(task => task.getAttribute("data-status") === "completed");
+        }
+
+        if (tasksToRemove.length > 0) {
+            tasksToRemove.forEach(task => task.remove());
+            saveTasksToLocalStorage();
+            checkForEmptyStates(currentFilter);
+            errormessage.style.color = "green";
+            errormessage.innerHTML = "Tasks deleted successfully.";
+            setTimeout(() => {
+                errormessage.innerHTML = "";
+            }, 1500);
+        } 
+    });
 }
 function updateDeleteAllButtonText(currentFilter){
     if(currentFilter==="all"){
@@ -280,11 +332,11 @@ function assignedTasks() {
     checkForEmptyStates("assigned");
     updateDeleteAllButtonText("assigned");
 }
-//function to show "no task" messages
+// Function to show "no task" messages and disable the delete all button
 function checkForEmptyStates(filter) {
     const taskContainers = document.querySelectorAll(".showtasks1");
     let hasTasks = false;
-    let hasFilteredTasks=false;
+    let hasFilteredTasks = false;
 
     taskContainers.forEach(task => {
         const status = task.getAttribute("data-status");
@@ -299,6 +351,7 @@ function checkForEmptyStates(filter) {
     noTasksMessage.style.display = "none";
     noCompletedTasksMessage.style.display = "none";
     noAssignedTasksMessage.style.display = "none";
+    deleteAllButton.disabled = true; 
 
     if (!hasTasks) {
         noTasksMessage.style.display = "block";
@@ -306,8 +359,11 @@ function checkForEmptyStates(filter) {
         noCompletedTasksMessage.style.display = "block";
     } else if (filter === "assigned" && !hasFilteredTasks) {
         noAssignedTasksMessage.style.display = "block";
+    } else {
+        deleteAllButton.disabled = false; 
     }
 }
+
 // function to store data in local storage
 function saveTasksToLocalStorage() {
     const tasks = [];
@@ -326,6 +382,21 @@ function loadTasksFromLocalStorage() {
         const showtasks1 = createshowtasks1(task.status);
         createTaskName(showtasks1, task.name);
         createTaskButtons(showtasks1);
+        const taskNameInput = showtasks1.querySelector(".taskname");
+        const checkButtonImg = showtasks1.querySelector(".checkbtni");
+        const editButton = showtasks1.querySelector(".editbtn");
+
+        if (task.status === "completed") {
+            taskNameInput.style.backgroundColor = "#D0D0D0";
+            checkButtonImg.src = "./images/check-mark.png";
+            showtasks1.querySelector(".checkbtn").title = "Undo task completion";
+            editButton.disabled = true;
+        } else {
+            taskNameInput.style.backgroundColor = "aliceblue";
+            checkButtonImg.src = "./images/radio.png";
+            showtasks1.querySelector(".checkbtn").title = "Complete the task";
+            editButton.disabled = false;
+        }
     });
     checkForEmptyStates(currentFilter);
 }
