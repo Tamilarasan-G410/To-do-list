@@ -298,7 +298,6 @@ nav input#completed:checked ~ .animation {
   color: #333;
   border: none;
   padding: 5px 10px;
-  margin-left: 10px;
   border-radius: 5px;
   cursor: pointer;
 }
