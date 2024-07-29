@@ -94,7 +94,7 @@ function createTaskButtons(todoTask) {
     deleteButton.addEventListener("click", ()=> { deleteTask(todoTask); });
     buttons.append(deleteButton);
 }
-// function to validate the input in the inputbox and call the above functions
+// function to validate the input in the inputbox and add the task
 function addTask(e) {
     e.preventDefault();
     const taskValue = inputBox.value.trim();
@@ -308,6 +308,7 @@ function deleteAllTasks() {
         } 
     });
 }
+// Function to update the "Delete all button" label
 function updateDeleteAllButtonText(currentFilter){
     if(currentFilter==="all"){
         deleteAllButton.innerHTML="Delete all tasks";
@@ -320,7 +321,7 @@ function updateDeleteAllButtonText(currentFilter){
     }
 }
 
-//function to show tasks in all section
+//function to show tasks in 'all' section
 function allTasks() {
     const taskContainers = document.querySelectorAll(".todoTask");
     taskContainers.forEach(task => {
@@ -329,7 +330,7 @@ function allTasks() {
     checkForEmptyStates("all");
     updateDeleteAllButtonText("all");
 }
-//function to show tasks in completed section 
+//function to show tasks in 'completed' section 
 function completedTasks() {
     const taskContainers = document.querySelectorAll(".todoTask");
     taskContainers.forEach(task => {
@@ -343,7 +344,7 @@ function completedTasks() {
     checkForEmptyStates("completed");
     updateDeleteAllButtonText("completed");
 }
-//function to show tasks in assigned section
+//function to show tasks in 'assigned' section
 function assignedTasks() {
     const taskContainers = document.querySelectorAll(".todoTask");
     taskContainers.forEach(task => {
