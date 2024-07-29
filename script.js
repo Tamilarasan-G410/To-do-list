@@ -86,11 +86,11 @@ function createTaskButtons(todoTask) {
     editButton.addEventListener("click", ()=> { editTask(todoTask); });
     buttons.append(editButton);
 
-    const checkButton = createButton("checkbtn", "./images/radio-button.png", "checkbtni","Complete the task");
+    const checkButton = createButton("checkbtn", "./images/incomplete.png", "checkbtni","Complete the task");
     checkButton.addEventListener("click", ()=> { completeTask(todoTask); });
     buttons.append(checkButton);
     
-    const deleteButton = createButton("deletebtn", "./images/bin.png", "deletebtni","Delete the task");
+    const deleteButton = createButton("deletebtn", "./images/delete.png", "deletebtni","Delete the task");
     deleteButton.addEventListener("click", ()=> { deleteTask(todoTask); });
     buttons.append(deleteButton);
 }
@@ -177,7 +177,7 @@ function editTask(todoTask) {
         inputBox.disabled = true;
         inputButton.disabled = true;
         eb.title = "Save the task";
-        ebi.src = "./images/diskette.png";
+        ebi.src = "./images/save.png";
         currentlyEditedTask = todoTask;
     } else {
         saveTask();
@@ -211,13 +211,13 @@ function completeTask(todoTask) {
     if (currentStatus === "assigned") {
         todoTask.querySelector(".taskname").style.backgroundColor = "#D0D0D0";
         todoTask.setAttribute("data-status", "completed");
-        cbi.src = "./images/check-mark.png";
+        cbi.src = "./images/complete.png";
         cb.title = "Undo task completion";
         eb.disabled = true;
     } else {
         todoTask.querySelector(".taskname").style.backgroundColor = "aliceblue";
         todoTask.setAttribute("data-status", "assigned");
-        cbi.src = "./images/radio-button.png";
+        cbi.src = "./images/incomplete.png";
         cb.title = "Complete the task";
         eb.disabled = false;
     }
@@ -412,12 +412,12 @@ function loadTasksFromLocalStorage() {
 
         if (task.status === "completed") {
             taskNameInput.style.backgroundColor = "#D0D0D0";
-            checkButtonImg.src = "./images/check-mark.png";
+            checkButtonImg.src = "./images/complete.png";
             todoTask.querySelector(".checkbtn").title = "Undo task completion";
             editButton.disabled = true;
         } else {
             taskNameInput.style.backgroundColor = "aliceblue";
-            checkButtonImg.src = "./images/radio-button.png";
+            checkButtonImg.src = "./images/incomplete.png";
             todoTask.querySelector(".checkbtn").title = "Complete the task";
             editButton.disabled = false;
         }
