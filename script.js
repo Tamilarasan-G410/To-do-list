@@ -156,6 +156,7 @@ function editTask(todoTask) {
             deleteAllButton.disabled = false;
             inputBox.disabled = false;
             inputButton.disabled = false;
+            deleteAllButton.disabled=false;
             ebi.src = "./images/edit.png";
             eb.title = "Edit the task";
             saveTasksToLocalStorage();
@@ -176,6 +177,7 @@ function editTask(todoTask) {
         deleteAllButton.disabled = true;
         inputBox.disabled = true;
         inputButton.disabled = true;
+        deleteAllButton.disabled=true;
         eb.title = "Save the task";
         ebi.src = "./images/save.png";
         currentlyEditedTask = todoTask;
