@@ -222,30 +222,28 @@ function completeTask(todoTask) {
         eb.disabled = false;
     }
     saveTasksToLocalStorage();
+    filterTasks(currentFilter);
+    checkForEmptyStates(currentFilter);
+}
 
+function filterTasks(currentFilter){
+    
     if (currentFilter === "all") {
         allTasks();
     } else if (currentFilter === "completed") {
         completedTasks();
-    } else if (currentFilter === "assigned") {
+    } else   {
         assignedTasks();
     }
-
-    checkForEmptyStates(currentFilter);
 }
 
 //function which facilitates  deleting the task
 function deleteTask(todoTask) {
     todoTask.remove();
     saveTasksToLocalStorage();
-    if (currentFilter === "all") {
-        allTasks();
-    } else if (currentFilter === "completed") {
-        completedTasks();
-    } else if (currentFilter === "assigned") {
-        assignedTasks();
-    }
+    filterTasks(currentFilter);
 }
+
 // Function to show toast notification
 function showToast(message, onConfirm, onCancel) {
     toastMessage.textContent = message;
