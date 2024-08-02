@@ -60,9 +60,6 @@ function createTaskName(todoTask, taskName) {
     taskname.value = taskName;
     taskname.readOnly=true;
     taskname.maxLength=150;
-    if (todoTask.state === 1) {
-        taskname.style.backgroundColor = "#D0D0D0";
-    }
     todoTask.append(taskname); 
 }
 //function to create the buttons
@@ -184,12 +181,6 @@ function editTask(todoTask) {
     } else {
         saveTask();
     }
-
-    taskname.addEventListener("focus", () => {
-        taskname.classList.remove("error");
-        taskname.placeholder = '';
-    });
-
     taskname.addEventListener("input", () => {
         if (taskname.classList.contains("error")) {
             taskname.classList.remove("error");
