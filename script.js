@@ -234,16 +234,22 @@ function filterTasks(currentFilter){
         allTasks();
     } else if (currentFilter === "completed") {
         completedTasks();
-    } else   {
+    } else if (currentFilter==="assigned")  {
         assignedTasks();
     }
 }
 
 //function which facilitates  deleting the task
 function deleteTask(todoTask) {
-    todoTask.remove();
-    saveTasksToLocalStorage();
-    filterTasks(currentFilter);
+    todoTask.style = `
+    transform:translateX(200%);
+    transition:transform 500ms ease-in-out;
+    `
+    setTimeout(()=>{
+        todoTask.remove();
+        saveTasksToLocalStorage();
+        filterTasks(currentFilter);
+    },400)  
 }
 
 // Function to show toast notification

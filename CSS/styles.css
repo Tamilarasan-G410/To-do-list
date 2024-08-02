@@ -170,7 +170,8 @@ nav input#completed:checked ~ .animation {
 .task-container {
   margin-top: 2%;
   height: 90%;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .todoTask {
