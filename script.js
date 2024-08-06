@@ -220,13 +220,16 @@ function completeTask(todoTask) {
 }
 
 function filterTasks(currentFilter){
-    
-    if (currentFilter === "all") {
-        allTasks();
-    } else if (currentFilter === "completed") {
-        completedTasks();
-    } else if (currentFilter==="assigned")  {
-        assignedTasks();
+    switch(currentFilter){
+        case 'all':
+            allTasks();
+            break;
+        case 'assigned':
+            assignedTasks();
+            break;
+        case 'completed':
+            completedTasks();
+            break;
     }
 }
 
@@ -274,25 +277,33 @@ function showToast(message, onConfirm, onCancel) {
 function deleteAllTasks() {
     let message;
     
-    if (currentFilter === "all") {
-        message = "Do you want to delete all tasks?";
-    } else if (currentFilter === "assigned") {
-        message = "Do you want to delete all assigned tasks?";
-    } else if (currentFilter === "completed") {
-        message = "Do you want to delete all completed tasks?";
+    switch(currentFilter){
+        case 'all':
+            message = "Do you want to delete all tasks?";
+            break;
+        case 'assigned':
+            message = "Do you want to delete all assigned tasks?";
+            break;
+        case 'completed':
+            message = "Do you want to delete all completed tasks?";
+            break;
     }
+   
     showToast(message, () => {
         const taskContainers = document.querySelectorAll(".todoTask");
         let tasksToRemove = [];
 
-        if (currentFilter === "all") {
-            tasksToRemove = Array.from(taskContainers);
-        } else if (currentFilter === "assigned") {
-            tasksToRemove = Array.from(taskContainers).filter(task => task.getAttribute("data-status") === "assigned");
-        } else if (currentFilter === "completed") {
-            tasksToRemove = Array.from(taskContainers).filter(task => task.getAttribute("data-status") === "completed");
+        switch(currentFilter){
+            case 'all':
+                tasksToRemove = Array.from(taskContainers);
+                break;
+            case 'assigned':
+                tasksToRemove = Array.from(taskContainers).filter(task => task.getAttribute("data-status") === "assigned");
+                break;
+            case 'completed':
+                tasksToRemove = Array.from(taskContainers).filter(task => task.getAttribute("data-status") === "completed");
+                break;
         }
-
         if (tasksToRemove.length > 0) {
             tasksToRemove.forEach(task => task.remove());
             saveTasksToLocalStorage();
@@ -307,14 +318,19 @@ function deleteAllTasks() {
 }
 // Function to update the "Delete all button" label
 function updateDeleteAllButtonText(currentFilter){
-    if(currentFilter==="all"){
-        deleteAllButton.innerHTML="Delete all tasks";
-    } else if(currentFilter==="assigned"){
-        deleteAllButton.innerHTML="Delete all assigned tasks";
-        deleteAllButton.title="Delete all assigned tasks";
-    } else if(currentFilter==="completed"){
-        deleteAllButton.innerHTML="Delete all completed tasks";
-        deleteAllButton.title="Delete all completed tasks";
+    switch(currentFilter){
+        case 'all':
+            deleteAllButton.innerHTML="Delete all tasks";
+            deleteAllButton.title="Delete all tasks"
+            break;
+        case 'assigned':
+            deleteAllButton.innerHTML="Delete all assigned tasks";
+            deleteAllButton.title="Delete all assigned tasks";
+            break;
+        case 'completed':
+            deleteAllButton.innerHTML="Delete all completed tasks";
+            deleteAllButton.title="Delete all completed tasks";
+            break;
     }
 }
 
