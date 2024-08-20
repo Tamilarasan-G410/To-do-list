@@ -43,6 +43,43 @@ let currentFilter = "all";
 checkForEmptyStates(currentFilter);
 document.addEventListener("DOMContentLoaded", loadTasksFromLocalStorage);
 
+// function to store data in local storage
+function saveTasksToLocalStorage() {
+    const tasks = [];
+    const taskContainers = document.querySelectorAll(".todoTask");
+    taskContainers.forEach(task => {
+        const taskName = task.querySelector(".taskname").value;
+        const taskStatus = task.getAttribute("data-status");
+        tasks.push({ name: taskName, status: taskStatus });
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+//function to load the data from the local storage
+function loadTasksFromLocalStorage() {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.forEach(task => {
+        const todoTask = createTodoTask(task.status);
+        createTaskName(todoTask, task.name);
+        createTaskButtons(todoTask);
+        const taskNameInput = todoTask.querySelector(".taskname");
+        const checkButtonImg = todoTask.querySelector(".checkbtni");
+        const editButton = todoTask.querySelector(".editbtn");
+
+        if (task.status === "completed") {
+            taskNameInput.style.backgroundColor = "#D0D0D0";
+            checkButtonImg.src = "./images/complete.png";
+            todoTask.querySelector(".checkbtn").title = "Undo task completion";
+            editButton.disabled = true;
+        } else {
+            taskNameInput.style.backgroundColor = "aliceblue";
+            checkButtonImg.src = "./images/incomplete.png";
+            todoTask.querySelector(".checkbtn").title = "Complete the task";
+            editButton.disabled = false;
+        }
+    });
+    checkForEmptyStates(currentFilter);
+}
+
 //function to create the tasks
 function createTodoTask(taskStatus) {
     const todoTask = document.createElement("div");
@@ -401,41 +438,4 @@ function checkForEmptyStates(filter) {
     } else {
         deleteAllButton.disabled = false; 
     }
-}
-
-// function to store data in local storage
-function saveTasksToLocalStorage() {
-    const tasks = [];
-    const taskContainers = document.querySelectorAll(".todoTask");
-    taskContainers.forEach(task => {
-        const taskName = task.querySelector(".taskname").value;
-        const taskStatus = task.getAttribute("data-status");
-        tasks.push({ name: taskName, status: taskStatus });
-    });
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-//function to load the data from the local storage
-function loadTasksFromLocalStorage() {
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks.forEach(task => {
-        const todoTask = createTodoTask(task.status);
-        createTaskName(todoTask, task.name);
-        createTaskButtons(todoTask);
-        const taskNameInput = todoTask.querySelector(".taskname");
-        const checkButtonImg = todoTask.querySelector(".checkbtni");
-        const editButton = todoTask.querySelector(".editbtn");
-
-        if (task.status === "completed") {
-            taskNameInput.style.backgroundColor = "#D0D0D0";
-            checkButtonImg.src = "./images/complete.png";
-            todoTask.querySelector(".checkbtn").title = "Undo task completion";
-            editButton.disabled = true;
-        } else {
-            taskNameInput.style.backgroundColor = "aliceblue";
-            checkButtonImg.src = "./images/incomplete.png";
-            todoTask.querySelector(".checkbtn").title = "Complete the task";
-            editButton.disabled = false;
-        }
-    });
-    checkForEmptyStates(currentFilter);
 }
