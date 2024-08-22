@@ -85,7 +85,6 @@ function createTodoTask(taskStatus) {
     const todoTask = document.createElement("div");
     todoTask.classList.add("todoTask");
     taskContainer.append(todoTask);
-    todoTask.state = taskStatus === "completed" ? 1 : 0;
     todoTask.setAttribute("data-status", taskStatus);
     return todoTask;
 }
